@@ -308,7 +308,7 @@
             @foreach ($supported as $item)
                 <img data-aos="fadein" data-aos-delay="{{ $loop->iteration * 200 }}"
                     src="{{ asset('storage/sponsors/' . $item->logo) }}" alt="{{ $item->name }}"
-                    class="h-24 md:h-36">
+                    class="h-16 md:h-24">
             @endforeach
         </div>
     </section>
