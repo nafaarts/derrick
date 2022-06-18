@@ -24,7 +24,7 @@
                         <tr class="hover:bg-TERTIARY border-b border-TERTIARY py-5">
                             <td class="px-4 py-2">
                                 <div class="flex gap-3 items-center">
-                                    <img src="{{ $admin->profile_image ? asset('storage/profile/' . $admin->profile_image) : 'img/sample.png' }}"
+                                    <img src="{{ asset($admin->profile_image ? 'storage/profile/' . $admin->profile_image : 'img/sample.png') }}"
                                         class="h-14 bg-zinc-300 rounded-md">
                                     <div>
                                         <h3 class="font-bold text-sm mb-1">{{ $admin->name }}</h3>
