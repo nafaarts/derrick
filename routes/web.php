@@ -76,7 +76,8 @@ Route::group(['prefix' => 'event'], function () {
     Route::get('/{event:slug}/thank-you', function (Event $event) {
         $name = $event->name;
         $category = "event";
-        return view('thankyou', compact('name', 'category'));
+        $link = $event->wa_link;
+        return view('thankyou', compact('name', 'category', 'link'));
     })->name('event.registered');
 });
 

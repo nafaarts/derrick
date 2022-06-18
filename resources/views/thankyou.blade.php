@@ -34,6 +34,10 @@
                 </div>
             @endauth
         @else
+            @if ($link)
+                <a href="{{ $link }}" target="_blank" class="mt-3"><i class="fab fa-fw fa-whatsapp"></i> Join
+                    whatsapp group</a>
+            @endif
             <div class="block mt-10">
                 <a class="py-2 px-4 bg-SECONDARY hover:bg-SECONDARY/80 rounded-md text-white"
                     href="{{ route('home') }}"><i class="fas fa-fw fa-arrow-left"></i>
