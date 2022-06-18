@@ -15,16 +15,15 @@
                 @method('PUT')
                 <div class="mb-4">
                     <label class="text-gray-600 capitalize">title <span class="text-red-500">*</span></label></br>
-                    <input type="text" name="name" id="name" class="mt-1 w-full" placeholder="Add competition title"
-                        value="{{ $event->name }}">
+                    <input type="text" name="name" id="name" class="mt-1 w-full"
+                        placeholder="Add competition title" value="{{ $event->name }}">
                     @error('name')
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="flex gap-2 mb-4">
                     <div class="w-1/2">
-                        <label class="text-gray-600 capitalize">start date <span
-                                class="text-red-500">*</span></label></br>
+                        <label class="text-gray-600 capitalize">start date <span class="text-red-500">*</span></label></br>
                         <input type="date" name="start_date" id="start_date" class="mt-1 w-full"
                             value="{{ $event->start_date }}">
                         @error('start_date')
@@ -57,10 +56,18 @@
                         </label>
                     </div>
                 </div>
+                <div class="mb-4">
+                    <label class="text-gray-600 capitalize">Whatsapp Group Invitation Link <span
+                            class="text-red-500">*</span></label></br>
+                    <input type="text" name="wa_link" id="wa_link" class="mt-1 w-full"
+                        placeholder="Add Whatsapp Group link" value="{{ $event->description }}">
+                    @error('wa_link')
+                        <small class="text-red-500">{{ $message }}</small>
+                    @enderror
+                </div>
                 <div>
                     <label class="text-gray-600 capitalize">description <span class="text-red-500">*</span></label></br>
-                    <textarea rows="14" name="description" id="description" class="mt-1 w-full"
-                        placeholder="Competition description">{{ $event->description }}</textarea>
+                    <textarea rows="14" name="description" id="description" class="mt-1 w-full" placeholder="Competition description">{{ $event->description }}</textarea>
                     @error('description')
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror
@@ -83,8 +90,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="text-gray-600 capitalize">Require Registration <span
-                            class="text-red-500">*</span></label>
+                    <label class="text-gray-600 capitalize">Require Registration <span class="text-red-500">*</span></label>
                     </br>
                     <label for="registration_required" class="w-full p-2 rounded-md mt-1 flex items-center">
                         <input type="checkbox" id="registration_required" name="registration_required"

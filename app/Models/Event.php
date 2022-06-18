@@ -21,6 +21,7 @@ class Event extends Model
         'photo',
         'status',
         'registration_required',
+        'wa_link'
     ];
 
     public function scopeFilter($query)
