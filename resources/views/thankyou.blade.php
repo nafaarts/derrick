@@ -35,7 +35,9 @@
             @endauth
         @else
             @if ($link)
-                <a href="{{ $link }}" target="_blank" class="mt-3"><i class="fab fa-fw fa-whatsapp"></i> Join
+                <a href="{{ $link }}" target="_blank"
+                    class="block mt-5 text-lg text-green-500 hover:text-green-500/80"><i class="fab fa-fw fa-whatsapp"></i>
+                    Join
                     whatsapp group</a>
             @endif
             <div class="block mt-10">
