@@ -54,7 +54,7 @@ class CompetitionRegisterController extends Controller
         }
 
         try {
-            $competition->registrant()->create([
+            $registrans = $competition->registrant()->create([
                 'user_id' => auth()->user()->id,
                 'registration_number' => $reg_no,
                 'team_name' => $request->team_name,
@@ -64,10 +64,10 @@ class CompetitionRegisterController extends Controller
                 'id_card' => $id_card,
                 'student_card' => $student_card,
             ]);
+            return redirect(route('competition.checkout') . '?reg=' . $registrans->registration_number);
         } catch (\Throwable $th) {
             dd($th);
         }
-        return redirect()->route('competition.registered', $competition);
     }
 
     public function checkout()
