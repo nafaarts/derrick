@@ -277,10 +277,27 @@
             Meet our crews
         </h2>
         <div class="flex flex-wrap gap-14 md:gap-20 justify-center">
-            @foreach ($crews as $item)
-                <img data-aos="fadein" data-aos-delay="{{ $loop->iteration * 200 }}"
-                    src="{{ asset('storage/committees/' . $item->photo) }}" alt="{{ $item->name }}"
-                    class="h-36 md:h-56">
+            @foreach ($crews as $crew)
+                <div data-aos="fadein" data-aos-delay="{{ $loop->iteration * 200 }}" class="p-2">
+                    <div class="group relative hover:scale-110 transition-all">
+                        <img src="{{ asset('storage/committees/' . $crew->photo) }}" alt="{{ $crew->name }}"
+                            class="h-36 md:h-56">
+                        <div
+                            class="absolute opacity-0 group-hover:opacity-100 flex h-full w-full top-0 left-0 justify-center items-end transition-all">
+                            <div
+                                class="flex gap-2 text-lg md:text-2xl text-SECONDARY bg-white p-0 md:py-2 px-6 w-fit h-fit rounded-lg text-center">
+                                <a class="cursor-pointer" target="_blank" href="{{ $crew->instagram }}"><i
+                                        class="fab fa-fw fa-instagram-square"></i></a>
+                                <a class="cursor-pointer" target="_blank" href="{{ $crew->linkedin }}"><i
+                                        class="fab fa-fw fa-linkedin"></i></a>
+                                <a class="cursor-pointer" target="_blank" href="https://wa.me/{{ $crew->phone }}"><i
+                                        class="fab fa-fw fa-whatsapp-square"></i></a>
+                                <a class="cursor-pointer" target="_blank" href="mailto:{{ $crew->email }}"><i
+                                        class="fas fa-fw fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </div>
     </section>

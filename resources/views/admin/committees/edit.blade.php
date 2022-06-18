@@ -45,6 +45,43 @@
                     <small class="text-red-500">{{ $message }}</small>
                 @enderror
             </div>
+            <div class="flex gap-2 mb-4">
+                <div class="w-full md:w-1/2">
+                    <label class="text-gray-600 capitalize">email <span class="text-red-500">*</span></label></br>
+                    <input type="email" name="email" id="email" class="mt-1 w-full"
+                        placeholder="Enter Email Address" value="{{ $committee->email }}">
+                    @error('email')
+                        <small class="text-red-500">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="w-full md:w-1/2">
+                    <label class="text-gray-600 capitalize">Phone Number (Whatsapp) <span
+                            class="text-red-500">*</span></label></br>
+                    <input type="text" name="phone" id="phone_number" class="mt-1 w-full"
+                        placeholder="Enter Phone Number" value="{{ $committee->phone }}">
+                    @error('phone')
+                        <small class="text-red-500">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+            <div class="flex gap-2 mb-4">
+                <div class="w-full md:w-1/2">
+                    <label class="text-gray-600 capitalize">Instagram link <span class="text-red-500">*</span></label></br>
+                    <input type="text" name="instagram" id="instagram" class="mt-1 w-full"
+                        placeholder="Enter instagram link" value="{{ $committee->instagram }}">
+                    @error('instagram')
+                        <small class="text-red-500">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="w-full md:w-1/2">
+                    <label class="text-gray-600 capitalize">linkedin link <span class="text-red-500">*</span></label></br>
+                    <input type="text" name="linkedin" id="linkedin" class="mt-1 w-full"
+                        placeholder="Enter LinkedIn link" value="{{ $committee->linkedin }}">
+                    @error('linkedin')
+                        <small class="text-red-500">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
             <div class="w-80">
                 <label class="text-gray-600 capitalize">upload photo <span class="text-red-500">*</span></label>
                 </br>

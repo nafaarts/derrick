@@ -10,7 +10,7 @@ class Committee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'title', 'photo', 'status'
+        'name', 'title', 'photo', 'status', 'email', 'phone', 'instagram', 'linkedin'
     ];
 
     public function scopeFilter($query)

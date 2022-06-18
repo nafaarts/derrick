@@ -48,6 +48,10 @@ class CommitteeController extends Controller
             'title' => 'required',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'instagram' => 'required',
+            'linkedin' => 'required',
         ]);
 
         if ($request->hasFile('photo')) {
@@ -59,6 +63,10 @@ class CommitteeController extends Controller
             'title' => request('title'),
             'photo' => request('photo')->hashName(),
             'status' => request('status'),
+            'email' => request('email'),
+            'phone' => request('phone'),
+            'instagram' => request('instagram'),
+            'linkedin' => request('linkedin'),
         ]);
 
         return redirect()->route('committee.index')->with('success', 'Committee created successfully.');
@@ -93,6 +101,10 @@ class CommitteeController extends Controller
             'title' => 'required',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'instagram' => 'required',
+            'linkedin' => 'required',
         ]);
 
         if ($request->hasFile('photo')) {
@@ -104,6 +116,10 @@ class CommitteeController extends Controller
         $committee->name = request('name');
         $committee->title = request('title');
         $committee->status = request('status');
+        $committee->email = request('email');
+        $committee->phone = request('phone');
+        $committee->instagram = request('instagram');
+        $committee->linkedin = request('linkedin');
         $committee->save();
 
         return redirect()->route('committee.index')->with('success', 'Committee updated successfully.');
