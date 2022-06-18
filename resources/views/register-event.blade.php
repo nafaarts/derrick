@@ -30,11 +30,10 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="text-gray-600 capitalize">Current Status <span
-                            class="text-red-500">*</span></label></br>
+                    <label class="text-gray-600 capitalize">Current Status <span class="text-red-500">*</span></label></br>
                     <select name="education_level" id="education_level" class="mt-1 w-full pl-3">
                         <option value="" selected>Select your current status</option>
-                        @foreach (['S1', 'S2', 'S3', 'D3/D4'] as $status)
+                        @foreach (['S1', 'S2', 'S3', 'D3/D4', 'Others'] as $status)
                             <option @selected(old('education_level') == $status)>{{ $status }}</option>
                         @endforeach
                     </select>
