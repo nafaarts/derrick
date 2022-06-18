@@ -102,12 +102,12 @@
                                 @if ($item->isPaid())
                                     <span class="text-green-500 rounded-md">
                                         <i class="fas fa-fw fa-check"></i>
-                                        {{ $item->latestPayment()->transaction_status }}
+                                        {{ $item->latestPayment()->transaction_status ?? '' }}
                                     </span>
                                 @else
                                     <span class="text-yellow-500 rounded-md">
                                         <i class="fas fa-fw fa-hourglass"></i>
-                                        {{ $item->latestPayment()->transaction_status }}
+                                        {{ $item->latestPayment()->transaction_status ?? '' }}
                                     </span>
                                 @endif
                             </td>
