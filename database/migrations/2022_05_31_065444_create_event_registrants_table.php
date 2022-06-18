@@ -38,8 +38,8 @@ return new class extends Migration
             $table->string('education_level');
             $table->string('current_status');
             $table->string('resident');
-            $table->string('institution');
-            $table->string('major');
+            $table->string('institution')->nullable();
+            $table->string('major')->nullable();
             $table->string('phone');
             $table->text('remark')->nullable();
             $table->timestamps();
