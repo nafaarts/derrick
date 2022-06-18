@@ -64,8 +64,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="text-gray-600 capitalize">Institution / University <span
-                            class="text-red-500">*</span></label></br>
+                    <label class="text-gray-600 capitalize">Institution / University</label></br>
                     <input type="text" name="institution" id="institution" class="mt-1 w-full"
                         placeholder="Enter your institution" value="{{ old('institution') }}">
                     @error('institution')
@@ -73,12 +72,12 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="text-gray-600 capitalize">Major <span class="text-red-500">*</span></label></br>
-                    <input type="text" name="major" id="major" class="mt-1 w-full" placeholder="Enter your major"
-                        value="{{ old('major') }}">
-                    @error('major')
-                        <small class="text-red-500">{{ $message }}</small>
-                    @enderror
+                    <label class="text-gray-600 capitalize">Major</br>
+                        <input type="text" name="major" id="major" class="mt-1 w-full"
+                            placeholder="Enter your major" value="{{ old('major') }}">
+                        @error('major')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
                 </div>
                 <div class="mb-4">
                     <label class="text-gray-600 capitalize">Phone Number <span class="text-red-500">*</span></label></br>
