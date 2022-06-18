@@ -88,6 +88,9 @@
                     </div>
                 </div>
 
+                <p class="text-DARKER">* Dont forget to add your member after registration complete.</p>
+                <hr class="
+                border-TERTIARY my-5">
                 <div class="flex justify-between items-center">
                     <button type="reset" class="py-2 px-4 text-SECONDARY font-bold"><i class="fas fa-fw fa-refresh"></i>
                         Clear form</button>
