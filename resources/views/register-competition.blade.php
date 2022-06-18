@@ -88,7 +88,7 @@
                     </div>
                 </div>
 
-                <p class="text-DARKER">* Don't forget to submit your another members data.</p>
+                <p class="text-DARKER">* Don't forget to submit your another member's data.</p>
                 <hr class="
                 border-TERTIARY my-5">
                 <div class="flex justify-between items-center">
