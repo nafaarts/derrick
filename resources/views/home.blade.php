@@ -125,33 +125,35 @@
     @endif
 
     {{-- profile --}}
-    <section id="profile" class="derrick-container py-10 mb-10">
-        <h2
-            class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
-            Profile of Blora
-        </h2>
-        <div class="mx-auto w-fit h-fit border-b-4 border-SECONDARY rounded-lg overflow-hidden" x-data=" { play: false }"
-            x-init="$watch('play', (value) => value ? $refs.video.play() : $refs.video.pause())">
-            <div class="overflow-hidden flex justify-center items-center relative">
-                <video x-ref="video" @click="play = !play" width="640" height="264">
-                    <source src="{{ asset('derrick_teaser.mp4') }}" type="video/mp4">
-                </video>
-                <div @click="play = true" x-show="!play" x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 transform scale-100"
-                    x-transition:leave-end="opacity-0 transform scale-90"
-                    class="absolute inset-0 w-full h-full flex items-center justify-center">
-                    <svg class="h-20 w-20 text-SECONDARY" fill="currentColor" viewBox="0 0 84 84">
-                        <circle opacity="0.9" cx="42" cy="42" r="42" fill="white"></circle>
-                        <path
-                            d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z">
-                        </path>
-                    </svg>
+    @if (false)
+        <section id="profile" class="derrick-container py-10 mb-10">
+            <h2
+                class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
+                Profile of Blora
+            </h2>
+            <div class="mx-auto w-fit h-fit border-b-4 border-SECONDARY rounded-lg overflow-hidden" x-data=" { play: false }"
+                x-init="$watch('play', (value) => value ? $refs.video.play() : $refs.video.pause())">
+                <div class="overflow-hidden flex justify-center items-center relative">
+                    <video x-ref="video" @click="play = !play" width="640" height="264">
+                        <source src="{{ asset('derrick_teaser.mp4') }}" type="video/mp4">
+                    </video>
+                    <div @click="play = true" x-show="!play" x-transition:leave="transition ease-in duration-300"
+                        x-transition:leave-start="opacity-100 transform scale-100"
+                        x-transition:leave-end="opacity-0 transform scale-90"
+                        class="absolute inset-0 w-full h-full flex items-center justify-center">
+                        <svg class="h-20 w-20 text-SECONDARY" fill="currentColor" viewBox="0 0 84 84">
+                            <circle opacity="0.9" cx="42" cy="42" r="42" fill="white"></circle>
+                            <path
+                                d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z">
+                            </path>
+                        </svg>
+                    </div>
+                    {{-- <img src="https://akamigas.ac.id/wp-content/uploads/2017/04/lokarina-1024x576.jpg"
+                                alt="Random Image" class="w-full scale-125"> --}}
                 </div>
-                {{-- <img src="https://akamigas.ac.id/wp-content/uploads/2017/04/lokarina-1024x576.jpg"
-                            alt="Random Image" class="w-full scale-125"> --}}
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     {{-- Speech From PM VPM --}}
     <section id="speech" class="derrick-container py-10 mb-10">
@@ -313,49 +315,52 @@
         </div>
     </section>
 
-    {{-- Blog --}}
-    <section id="blogs" class="derrick-container py-10 mb-10">
-        <h2
-            class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
-            Latest
-            Updates
-        </h2>
-        <div class="flex flex-wrap">
-            @foreach ($blogs as $blog)
-                <div class="p-4 w-full md:w-1/3 transition-all" data-aos="fadein"
-                    data-aos-delay="{{ $loop->iteration * 100 }}">
-                    <div class="h-full bg-white/50 hover:bg-white/75 rounded-tr-3xl overflow-hidden">
-                        <a href="{{ route('blog.read', $blog) }}">
-                            <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                                src="{{ $blog->image ? asset('storage/blog/' . $blog->image) : $blog->image_link }}"
-                                alt="blog">
-                        </a>
-                        <div class="p-6">
-                            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $blog->title }}</h1>
-                            <p class="leading-relaxed mb-3 font-light">{{ $blog->headline }}</p>
-                            <div class="flex items-center flex-wrap ">
-                                <a href="{{ route('blog.read', $blog) }}"
-                                    class="text-SECONDARY inline-flex items-center md:mb-2 lg:mb-0">Read More
-                                    <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M5 12h14"></path>
-                                        <path d="M12 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                                <span
-                                    class="text-gray-400 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm py-1">
-                                    <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                    </svg>{{ $blog->views }}
-                                </span>
+    @if ($blogs->count() > 0)
+        {{-- Blog --}}
+        <section id="blogs" class="derrick-container py-10 mb-10">
+            <h2
+                class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
+                Latest
+                Updates
+            </h2>
+            <div class="flex flex-wrap">
+                @foreach ($blogs as $blog)
+                    <div class="p-4 w-full md:w-1/3 transition-all" data-aos="fadein"
+                        data-aos-delay="{{ $loop->iteration * 100 }}">
+                        <div class="h-full bg-white/50 hover:bg-white/75 rounded-tr-3xl overflow-hidden">
+                            <a href="{{ route('blog.read', $blog) }}">
+                                <img class="lg:h-48 md:h-36 w-full object-cover object-center"
+                                    src="{{ $blog->image ? asset('storage/blog/' . $blog->image) : $blog->image_link }}"
+                                    alt="blog">
+                            </a>
+                            <div class="p-6">
+                                <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $blog->title }}</h1>
+                                <p class="leading-relaxed mb-3 font-light">{{ $blog->headline }}</p>
+                                <div class="flex items-center flex-wrap ">
+                                    <a href="{{ route('blog.read', $blog) }}"
+                                        class="text-SECONDARY inline-flex items-center md:mb-2 lg:mb-0">Read More
+                                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor"
+                                            stroke-width="2" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                    <span
+                                        class="text-gray-400 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm py-1">
+                                        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>{{ $blog->views }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
+                @endforeach
+            </div>
+        </section>
+    @endif
 
 @endsection

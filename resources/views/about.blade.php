@@ -44,7 +44,7 @@
     <section id="crews" class="derrick-container py-10 mb-10">
         <h2
             class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
-            Commettees
+            Committees
         </h2>
         <div class="flex flex-wrap gap-14 md:gap-20 justify-center">
             @foreach ($crews as $item)
