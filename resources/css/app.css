@@ -57,7 +57,7 @@
     }
 
     .event-wrapper {
-        @apply rounded-md overflow-hidden hover:scale-105 transition-all cursor-pointer;
+        @apply rounded-md overflow-hidden hover:scale-105 transition-all cursor-pointer h-fit md:h-80 flex justify-center items-center;
         background-size: cover;
         background-repeat: no-repeat;
         cursor: pointer;

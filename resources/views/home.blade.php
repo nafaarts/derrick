@@ -97,29 +97,32 @@
     </section>
 
     {{-- competition --}}
-    <section id="competition" class="derrick-container py-10 mb-10">
-        <h2
-            class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
-            Competition
-        </h2>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-            @foreach ($competitions as $competition)
-                <a href="{{ route('competition.detail', $competition) }}" data-aos="fadein"
-                    data-aos-delay="{{ $loop->iteration * 200 }}" class="w-full md:w-1/4">
-                    <div class=" event-wrapper"
-                        style="background-image: url('{{ asset('storage/competition/photo/' . $competition->photo) }}')">
-                        <div class="event-content">
-                            <img src="{{ asset('storage/competition/logo/' . $competition->logo) }}"
-                                class="mx-auto" alt="competition Logo" width="100">
-                            <strong class="block mt-5 text-HEADINGTEXT font-bold">{{ $competition->name }}</strong><br>
-                            <small
-                                class="font-light">{{ defaultDateFrom($competition->start_date, $competition->end_date) }}</small>
+    @if ($competitions->count() > 0)
+        <section id="competition" class="derrick-container py-10 mb-10">
+            <h2
+                class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
+                Competition
+            </h2>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                @foreach ($competitions as $competition)
+                    <a href="{{ route('competition.detail', $competition) }}" data-aos="fadein"
+                        data-aos-delay="{{ $loop->iteration * 200 }}" class="w-full md:w-1/4">
+                        <div class=" event-wrapper"
+                            style="background-image: url('{{ asset('storage/competition/photo/' . $competition->photo) }}')">
+                            <div class="event-content">
+                                <img src="{{ asset('storage/competition/logo/' . $competition->logo) }}" class="mx-auto"
+                                    alt="competition Logo" width="100">
+                                <strong
+                                    class="block mt-5 text-HEADINGTEXT font-bold">{{ $competition->name }}</strong><br>
+                                <small
+                                    class="font-light">{{ defaultDateFrom($competition->start_date, $competition->end_date) }}</small>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </section>
+                    </a>
+                @endforeach
+            </div>
+        </section>
+    @endif
 
     {{-- profile --}}
     <section id="profile" class="derrick-container py-10 mb-10">
@@ -210,56 +213,60 @@
         </div>
     </section>
 
-    {{-- Pre Event --}}
-    <section id="pre-event" class="derrick-container py-10 mb-10">
-        <h2
-            class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
-            Pre Event
-        </h2>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-            @foreach ($preEvent as $event)
-                <a href="{{ route('event.detail', $event) }}" class="w-full md:w-1/4" data-aos="fadein"
-                    data-aos-delay="{{ $loop->iteration * 200 }}">
-                    <div class="event-wrapper"
-                        style="background-image: url('{{ asset('storage/events/photo/' . $event->photo) }}')">
-                        <div class="event-content">
-                            <img src="{{ asset('storage/events/logo/' . $event->logo) }}" class="mx-auto"
-                                alt="Event Logo" width="100">
-                            <strong class="block mt-5 text-HEADINGTEXT font-bold">{{ $event->name }}</strong><br>
-                            <small
-                                class="font-light">{{ defaultDateFrom($event->start_date, $event->end_date) }}</small>
+    @if (count($preEvent) > 0)
+        {{-- Pre Event --}}
+        <section id="pre-event" class="derrick-container py-10 mb-10">
+            <h2
+                class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
+                Pre Event
+            </h2>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                @foreach ($preEvent as $event)
+                    <a href="{{ route('event.detail', $event) }}" class="w-full md:w-1/4" data-aos="fadein"
+                        data-aos-delay="{{ $loop->iteration * 200 }}">
+                        <div class="event-wrapper"
+                            style="background-image: url('{{ asset('storage/events/photo/' . $event->photo) }}')">
+                            <div class="event-content">
+                                <img src="{{ asset('storage/events/logo/' . $event->logo) }}" class="mx-auto"
+                                    alt="Event Logo" width="100">
+                                <strong class="block mt-5 text-HEADINGTEXT font-bold">{{ $event->name }}</strong><br>
+                                <small
+                                    class="font-light">{{ defaultDateFrom($event->start_date, $event->end_date) }}</small>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </section>
+                    </a>
+                @endforeach
+            </div>
+        </section>
+    @endif
 
-    {{-- Post Event --}}
-    <section id="post-event" class="derrick-container py-10 mb-10">
-        {{-- <h2 class="main-heading-2"><span>Post Event</span></h2> --}}
-        <h2
-            class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
-            Post Event
-        </h2>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-            @foreach ($postEvent as $event)
-                <a href="{{ route('event.detail', $event) }}" class="w-full md:w-1/4" data-aos="fadein"
-                    data-aos-delay="{{ $loop->iteration * 200 }}">
-                    <div class="event-wrapper"
-                        style="background-image: url('{{ asset('storage/events/photo/' . $event->photo) }}')">
-                        <div class="event-content">
-                            <img src="{{ asset('storage/events/logo/' . $event->logo) }}" class="mx-auto"
-                                alt="Event Logo" width="100">
-                            <strong class="block mt-5 text-HEADINGTEXT font-bold">{{ $event->name }}</strong><br>
-                            <small
-                                class="font-light">{{ defaultDateFrom($event->start_date, $event->end_date) }}</small>
+    @if (count($postEvent) > 0)
+        {{-- Post Event --}}
+        <section id="post-event" class="derrick-container py-10 mb-10">
+            {{-- <h2 class="main-heading-2"><span>Post Event</span></h2> --}}
+            <h2
+                class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
+                Post Event
+            </h2>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                @foreach ($postEvent as $event)
+                    <a href="{{ route('event.detail', $event) }}" class="w-full md:w-1/4" data-aos="fadein"
+                        data-aos-delay="{{ $loop->iteration * 200 }}">
+                        <div class="event-wrapper"
+                            style="background-image: url('{{ asset('storage/events/photo/' . $event->photo) }}')">
+                            <div class="event-content">
+                                <img src="{{ asset('storage/events/logo/' . $event->logo) }}" class="mx-auto"
+                                    alt="Event Logo" width="100">
+                                <strong class="block mt-5 text-HEADINGTEXT font-bold">{{ $event->name }}</strong><br>
+                                <small
+                                    class="font-light">{{ defaultDateFrom($event->start_date, $event->end_date) }}</small>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </section>
+                    </a>
+                @endforeach
+            </div>
+        </section>
+    @endif
 
     {{-- crews --}}
     <section id="crews" class="derrick-container py-10 mb-10">

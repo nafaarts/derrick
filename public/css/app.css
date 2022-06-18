@@ -528,7 +528,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 .event-wrapper {
+  display: flex;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   border-radius: 0.375rem;
   transition-property: all;
@@ -539,6 +545,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@media (min-width: 768px) {
+
+  .event-wrapper {
+    height: 20rem;
+  }
 }
 .event-wrapper {
         background-size: cover;
@@ -874,6 +886,9 @@ fieldset {
 .h-32 {
   height: 8rem;
 }
+.h-16 {
+  height: 4rem;
+}
 .h-6 {
   height: 1.5rem;
 }
@@ -883,21 +898,8 @@ fieldset {
 .h-10 {
   height: 2.5rem;
 }
-.h-16 {
-  height: 4rem;
-}
-.max-h-fit {
-  max-height: -webkit-fit-content;
-  max-height: -moz-fit-content;
-  max-height: fit-content;
-}
 .min-h-screen {
   min-height: 100vh;
-}
-.min-h-fit {
-  min-height: -webkit-fit-content;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
 }
 .w-full {
   width: 100%;
@@ -972,11 +974,6 @@ fieldset {
 }
 .max-w-sm {
   max-width: 24rem;
-}
-.max-w-fit {
-  max-width: -webkit-fit-content;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1537,9 +1534,6 @@ fieldset {
 .pl-12 {
   padding-left: 3rem;
 }
-.pt-20 {
-  padding-top: 5rem;
-}
 .pt-10 {
   padding-top: 2.5rem;
 }
@@ -1737,13 +1731,13 @@ fieldset {
   --tw-text-opacity: 1;
   color: rgb(248 113 113 / var(--tw-text-opacity));
 }
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
 .text-green-500 {
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -1825,147 +1819,122 @@ fieldset {
     }
   } */
 
-
-  .hover\:scale-105:hover {
+.hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-
-  .hover\:bg-white\/75:hover {
+.hover\:bg-white\/75:hover {
   background-color: rgb(255 255 255 / 0.75);
 }
 
-
-  .hover\:bg-SECONDARY\/80:hover {
+.hover\:bg-SECONDARY\/80:hover {
   background-color: rgb(234 130 88 / 0.8);
 }
 
-
-  .hover\:bg-SECONDARY\/75:hover {
+.hover\:bg-SECONDARY\/75:hover {
   background-color: rgb(234 130 88 / 0.75);
 }
 
-
-  .hover\:bg-SECONDARY\/50:hover {
+.hover\:bg-SECONDARY\/50:hover {
   background-color: rgb(234 130 88 / 0.5);
 }
 
-
-  .hover\:bg-orange-700:hover {
+.hover\:bg-orange-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(194 65 12 / var(--tw-bg-opacity));
 }
 
-
-  .hover\:bg-orange-400:hover {
+.hover\:bg-orange-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(251 146 60 / var(--tw-bg-opacity));
 }
 
-
-  .hover\:bg-TERTIARY:hover {
+.hover\:bg-TERTIARY:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(247 226 190 / var(--tw-bg-opacity));
 }
 
-
-  .hover\:bg-orange-600:hover {
+.hover\:bg-orange-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
 }
 
-
-  .hover\:bg-orange-500:hover {
+.hover\:bg-orange-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
 }
 
-
-  .hover\:text-orange-500:hover {
+.hover\:text-orange-500:hover {
   --tw-text-opacity: 1;
   color: rgb(249 115 22 / var(--tw-text-opacity));
 }
 
-
-  .hover\:text-orange-400:hover {
+.hover\:text-orange-400:hover {
   --tw-text-opacity: 1;
   color: rgb(251 146 60 / var(--tw-text-opacity));
 }
 
-
-  .hover\:text-SECONDARY:hover {
+.hover\:text-SECONDARY:hover {
   --tw-text-opacity: 1;
   color: rgb(234 130 88 / var(--tw-text-opacity));
 }
 
-
-  .hover\:text-white:hover {
+.hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-
-  .hover\:text-orange-300:hover {
+.hover\:text-orange-300:hover {
   --tw-text-opacity: 1;
   color: rgb(253 186 116 / var(--tw-text-opacity));
 }
 
-
-  .hover\:text-red-500:hover {
+.hover\:text-red-500:hover {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
-
-  .hover\:text-SECONDARY\/80:hover {
+.hover\:text-SECONDARY\/80:hover {
   color: rgb(234 130 88 / 0.8);
 }
 
-
-  .focus\:z-10:focus {
+.focus\:z-10:focus {
   z-index: 10;
 }
 
-
-  .focus\:border-orange-500:focus {
+.focus\:border-orange-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(249 115 22 / var(--tw-border-opacity));
 }
 
-
-  .focus\:outline-none:focus {
+.focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
 
-
-  .focus\:ring-2:focus {
+.focus\:ring-2:focus {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-
-  .focus\:ring-orange-500:focus {
+.focus\:ring-orange-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(249 115 22 / var(--tw-ring-opacity));
 }
 
-
-  .focus\:ring-offset-2:focus {
+.focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
 }
 
-
-  .group:hover .group-hover\:text-orange-400 {
+.group:hover .group-hover\:text-orange-400 {
   --tw-text-opacity: 1;
   color: rgb(251 146 60 / var(--tw-text-opacity));
 }
 
-
-  @media (min-width: 640px) {
+@media (min-width: 640px) {
 
   .sm\:w-64 {
     width: 16rem;
@@ -1998,8 +1967,7 @@ fieldset {
   }
 }
 
-
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
 
   .md\:static {
     position: static;
@@ -2340,8 +2308,7 @@ fieldset {
   }
 }
 
-
-  @media (min-width: 1024px) {
+@media (min-width: 1024px) {
 
   .lg\:mb-0 {
     margin-bottom: 0px;
