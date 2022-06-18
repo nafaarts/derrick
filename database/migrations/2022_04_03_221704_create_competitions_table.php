@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('logo');
-            $table->string('description');
+            $table->text('description');
             $table->boolean('status')->default(false);
             $table->date('start_date');
             $table->date('end_date');
