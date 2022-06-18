@@ -55,26 +55,22 @@ class EventController extends Controller
             'registration_required' => 'required',
         ]);
 
-        try {
-            if (request()->has('logo')) $request->logo->store('public/events/logo');
-            if (request()->has('photo')) $request->photo->store('public/events/photo');
+        if (request()->has('logo')) $request->logo->store('public/events/logo');
+        if (request()->has('photo')) $request->photo->store('public/events/photo');
 
-            Event::create([
-                'name' => $request->name,
-                'slug' => str()->slug($request->name),
-                'description' => $request->description,
-                'logo' => $request->logo->hashName(),
-                'category' => str()->upper($request->category),
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'photo' => $request->photo->hashName(),
-                'views' => 0,
-                'status' => $request->status,
-                'registration_required' => $request->registration_required,
-            ]);
-        } catch (\Throwable $th) {
-            dd($th);
-        }
+        Event::create([
+            'name' => $request->name,
+            'slug' => str()->slug($request->name),
+            'description' => $request->description,
+            'logo' => $request->logo->hashName(),
+            'category' => str()->upper($request->category),
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'photo' => $request->photo->hashName(),
+            'views' => 0,
+            'status' => $request->status,
+            'registration_required' => $request->registration_required,
+        ]);
 
         return redirect()->route('event.index')->with('success', 'Event created successfully.');
     }
