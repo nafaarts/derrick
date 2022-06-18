@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $countdown = env('COUNTDOWN_SHOW') ? env('COUNTDOWN_SET') : "";
 
-    $competitions = Competition::latest()->get();
+    $competitions = Competition::latest()->get() ?? null;
     $events = Event::all();
     $preEvent = $events->where('category', 'PRE')->where('status', 1)->all();
     $postEvent = $events->where('category', 'POST')->where('status', 1)->all();
