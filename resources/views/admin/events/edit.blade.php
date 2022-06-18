@@ -60,7 +60,7 @@
                     <label class="text-gray-600 capitalize">Whatsapp Group Invitation Link <span
                             class="text-red-500">*</span></label></br>
                     <input type="text" name="wa_link" id="wa_link" class="mt-1 w-full"
-                        placeholder="Add Whatsapp Group link" value="{{ $event->description }}">
+                        placeholder="Add Whatsapp Group link" value="{{ $event->wa_link }}">
                     @error('wa_link')
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror
