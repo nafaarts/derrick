@@ -18,7 +18,6 @@ class GalleryFactory extends Factory
     {
         return [
             'image' => null,
-            'description' => $this->faker->text(),
             'alt' =>  'sample of image alt.',
             'link' => $this->faker->imageUrl(),
             'user_id' => 1
