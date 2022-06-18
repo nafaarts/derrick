@@ -69,7 +69,7 @@ class EventController extends Controller
             'photo' => $request->photo->hashName(),
             'views' => 0,
             'status' => $request->status,
-            'registration_required' => $request->registration_required ? 1 : 0,
+            'registration_required' => request()->has('registration_required') ? $request->registration_required : 0,
         ]);
 
         return redirect()->route('event.index')->with('success', 'Event created successfully.');
