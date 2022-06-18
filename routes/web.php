@@ -43,7 +43,7 @@ Route::get('/', function () {
 
     $competitions = Competition::latest()->get();
     $events = Event::all();
-    $preEvent = $events->where('category', 'PRE')->where('status', 1)->all();
+    $preEvent = $events->where('category', 'PRE')->where('status', 1)->where('start_date', '>', date('Y-m') . '-00')->slice(0, 5);
     $postEvent = $events->where('category', 'POST')->where('status', 1)->all();
     $blogs = Blog::where('status', 'published')->latest()->limit(3)->get();
 
