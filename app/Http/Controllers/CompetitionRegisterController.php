@@ -145,6 +145,8 @@ class CompetitionRegisterController extends Controller
 
     public function notification()
     {
+        echo request()->getContent();
+        die;
         \Midtrans\Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         $notif = new \Midtrans\Notification();
@@ -194,6 +196,6 @@ class CompetitionRegisterController extends Controller
 
         return response()->json([
             'status' => 'success',
-        ]);
+        ], 200);
     }
 }
