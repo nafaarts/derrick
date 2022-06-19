@@ -105,17 +105,17 @@
                                         {{ $item->competition->name }}
                                     </p>
                                     @if ($item->isPaid())
-                                        <span class="text-green-500 rounded-md">
+                                        <span class="text-green-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-check"></i>
                                             {{ $item->latestPayment()->transaction_status ?? '' }}
                                         </span>
                                     @elseif($item->latestPayment()->transaction_status == 'pending')
-                                        <span class="text-yellow-500 rounded-md">
+                                        <span class="text-yellow-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-hourglass"></i>
                                             {{ $item->latestPayment()->transaction_status ?? '' }}
                                         </span>
                                     @else
-                                        <span class="text-red-500 rounded-md">
+                                        <span class="text-red-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-times"></i>
                                             {{ $item->latestPayment()->transaction_status ?? '' }}
                                         </span>

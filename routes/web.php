@@ -144,22 +144,22 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             $registers = Registrant::where('user_id', auth()->id())->first();
             $alert = [];
             if (!$registers->isPaid())
-                array_push($alert, [
-                    'type' => 'danger',
-                    'message' => 'You have not paid for your registration. Please pay your registration fee to continue.'
-                ]);
+                array_push(
+                    $alert,
+                    'You have not paid for your registration. Please pay your registration fee to continue.'
+                );
 
             if (!$registers->user->profile_picture)
-                array_push($alert, [
-                    'type' => 'danger',
-                    'message' => 'You have not uploaded your profile picture. Please upload your profile picture to continue.'
-                ]);
+                array_push(
+                    $alert,
+                    'You have not uploaded your profile picture. Please upload your profile picture to continue.'
+                );
 
             if ($registers->members->count() < $registers->competition->max_member)
-                array_push($alert, [
-                    'type' => 'warning',
-                    'message' => 'Please add more member to your team.'
-                ]);
+                array_push(
+                    $alert,
+                    'Please add more member to your team.'
+                );
 
             return view('registrant.dashboard.index', compact('registers', 'alert'));
         }
