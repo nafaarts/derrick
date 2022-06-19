@@ -9,12 +9,12 @@
         method="POST" enctype="multipart/form-data">
         <h2>Edit Gallery</h2>
         <hr class="my-3 border-TERTIARY">
-        <div class="flex" x-data="imageViewer()">
-            <label for="image" class="flex-1 mr-3 overflow-hidden rounded-md p-2">
+        <div class="flex flex-col md:flex-row" x-data="imageViewer()">
+            <label for="image" class="w-full md:flex-1 mr-3 overflow-hidden rounded-md p-2">
                 <img :src="imageUrl" class="object-cover rounded w-full">
                 <input type="file" class="hidden" name="image" id="image" accept="image/*" @change="fileChosen">
             </label>
-            <div class="form flex-1">
+            <div class="form w-full md:flex-1">
                 @csrf
                 @method('PUT')
                 <div class="flex flex-col mb-2">
@@ -34,8 +34,7 @@
                 </div>
                 <div class="flex flex-col mb-2">
                     <label for="description">Caption (optional)</label>
-                    <textarea name="description" id="description" cols="30" rows="10"
-                        class="mt-1 w-full">{{ $gallery->description }}</textarea>
+                    <textarea name="description" id="description" cols="30" rows="10" class="mt-1 w-full">{{ $gallery->description }}</textarea>
                     @error('description')
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror

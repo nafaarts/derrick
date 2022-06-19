@@ -65,7 +65,7 @@
             </div>
             <hr class="my-3 border-TERTIARY">
             <div class="flex flex-col md:flex-row items-start gap-0 md:gap-8">
-                <img src="{{ asset('storage/profile/' . $registers->user->profile_image) }}"
+                <img src="{{ asset($registers->user->profile_image ? 'storage/profile/' . $registers->user->profile_image : 'img/sample.png') }}"
                     class="w-24 h-full rounded-lg mb-4 md:mb-0" alt="Leader's Photo">
                 <table class="text-xs text-gray-500">
                     <tr>

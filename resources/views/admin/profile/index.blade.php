@@ -13,8 +13,8 @@
                 <div class="w-full md:w-4/5">
                     <div class="mb-4 w-full">
                         <label class="text-gray-600 capitalize">Name <span class="text-red-500">*</span></label></br>
-                        <input type="text" name="name" id="name" class="mt-1 w-full" placeholder="Enter full name"
-                            value="{{ old('name') ?? $profile->name }}">
+                        <input type="text" name="name" id="name" class="mt-1 w-full"
+                            placeholder="Enter full name" value="{{ old('name') ?? $profile->name }}">
                         @error('name')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-4">
                         <div class="flex gap-2">
-                            <div class="w-1/2">
+                            <div class="w-full md:w-1/2">
                                 <label class="text-gray-600 capitalize">Change Password</label></br>
                                 <input type="password" name="password" id="password" class="mt-1 w-full"
                                     placeholder="Enter password" value="{{ old('password') }}">
@@ -37,7 +37,7 @@
                                     <small class="text-red-500">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="w-1/2">
+                            <div class="w-full md:w-1/2">
                                 <label class="text-gray-600 capitalize">Confirm Password</label></br>
                                 <input type="password" name="password_confirmation" id="password_confirmation"
                                     class="mt-1 w-full" placeholder="Enter password confirmation"
@@ -50,8 +50,7 @@
                     </div>
                     @can('isRegistrantRegistered')
                         <div class="mb-4">
-                            <label class="text-gray-600 capitalize">University <span
-                                    class="text-red-500">*</span></label></br>
+                            <label class="text-gray-600 capitalize">University <span class="text-red-500">*</span></label></br>
                             <input type="text" name="university" id="university" class="mt-1 w-full"
                                 placeholder="Enter your university"
                                 value="{{ old('university') ?? $profile->registrant->university }}">
@@ -61,15 +60,15 @@
                         </div>
 
                         <div class="flex gap-2 mb-4">
-                            <div class="w-1/2">
+                            <div class="w-full md:w-1/2">
                                 <label class="text-gray-600 capitalize">Major <span class="text-red-500">*</span></label></br>
-                                <input type="text" name="major" id="major" class="mt-1 w-full" placeholder="Enter your major"
-                                    value="{{ old('major') ?? $profile->registrant->major }}">
+                                <input type="text" name="major" id="major" class="mt-1 w-full"
+                                    placeholder="Enter your major" value="{{ old('major') ?? $profile->registrant->major }}">
                                 @error('major')
                                     <small class="text-red-500">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="w-1/2">
+                            <div class="w-full md:w-1/2">
                                 <label class="text-gray-600 capitalize">Phone Number <span
                                         class="text-red-500">*</span></label></br>
                                 <input type="text" name="phone" id="phone" class="mt-1 w-full"
@@ -81,9 +80,8 @@
                             </div>
                         </div>
                         <div class="flex gap-2 mb-4">
-                            <div class="w-1/2">
-                                <label class="text-gray-600 capitalize">ID Card <span
-                                        class="text-red-500">*</span></label></br>
+                            <div class="w-full md:w-1/2">
+                                <label class="text-gray-600 capitalize">ID Card <span class="text-red-500">*</span></label></br>
                                 <input type="file" name="id_card" id="id_card" class="mt-1 w-full"
                                     placeholder="Enter your id_card" value="{{ old('id_card') }}">
                                 @error('id_card')
@@ -96,7 +94,7 @@
                                 </small>
                             </div>
 
-                            <div class="w-1/2">
+                            <div class="w-full md:w-1/2">
                                 <label class="text-gray-600 capitalize">Student Card <span
                                         class="text-red-500">*</span></label></br>
                                 <input type="file" name="student_card" id="student_card" class="mt-1 w-full"
@@ -131,7 +129,8 @@
 
                 </div>
             </div>
-            <button type="submit" class="py-2 px-8 rounded-md bg-SECONDARY hover:bg-SECONDARY/80 text-white">Submit changes
+            <button type="submit" class="py-2 px-8 rounded-md bg-SECONDARY hover:bg-SECONDARY/80 text-white">Submit
+                changes
             </button>
         </form>
     </div>

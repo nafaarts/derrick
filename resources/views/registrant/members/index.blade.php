@@ -4,7 +4,7 @@
 
 @section('body')
     <div class="bg-PRIMARY pb-4 px-4 rounded-md w-full text-xs">
-        <div class="w-full flex justify-between items-center px-2 pt-5">
+        <div class="w-full flex md:flex-row flex-col justify-between md:items-center items-start pt-5 gap-4">
             <h3 class="font-bold">Members</h3>
             @include('components.search', ['route' => route('registrant.member.index')])
         </div>
@@ -48,7 +48,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <small class="text-gray-500 m-2">Max Allowed Member : {{ $register->competition->max_member }}</small>
+            <small class="text-gray-500 mt-3 block">Max Allowed Member : {{ $register->competition->max_member }}</small>
         </div>
     </div>
 
