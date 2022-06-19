@@ -49,20 +49,20 @@
                                 <small>{{ $person->registration_number }}</small>
                             </td>
                             <td class="px-4 py-4 whitespace-nowrap">
-                                @if ($item->isPaid())
+                                @if ($person->isPaid())
                                     <span class="px-2 py-1 bg-green-500 text-white rounded-md">
                                         <i class="fas fa-fw fa-check"></i>
-                                        {{ $item->latestPayment()->transaction_status ?? '' }}
+                                        {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
-                                @elseif($item->latestPayment()->transaction_status == 'expire')
+                                @elseif($person->latestPayment()->transaction_status == 'expire')
                                     <span class="px-2 py-1 bg-red-500 text-white rounded-md">
                                         <i class="fas fa-fw fa-times"></i>
-                                        {{ $item->latestPayment()->transaction_status ?? '' }}
+                                        {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
                                 @else
                                     <span class="px-2 py-1 bg-yellow-500 text-white rounded-md">
                                         <i class="fas fa-fw fa-hourglass"></i>
-                                        {{ $item->latestPayment()->transaction_status ?? '' }}
+                                        {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
                                 @endif
                             </td>
