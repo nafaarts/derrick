@@ -23,29 +23,29 @@
                 <tbody class="text-gray-700">
                     @foreach ($sponsors as $sponsor)
                         <tr class="hover:bg-TERTIARY border-b border-TERTIARY py-5">
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <img src="{{ asset('storage/sponsors/' . $sponsor->logo) }}"
                                     class="h-10 bg-zinc-300 rounded-md">
                             </td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <div class="font-bold">{{ $sponsor->name }}</div>
                             </td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <small
                                     class="inline-block rounded-full px-2 font-bold text-white {{ $sponsor->status ? 'bg-green-400' : 'bg-yellow-400' }}">{{ $sponsor->status ? 'PUBLISHED' : 'DRAFT' }}</small>
                             </td>
-                            <td class="px-4 py-2 uppercase">
+                            <td class="px-4 py-2 whitespace-nowrap uppercase">
                                 <div class="font-bold">{{ $sponsor->type }}</div>
                                 @if ($sponsor->type == 'sponsor')
                                     <div class="mt-1">{{ $sponsor->sponsor_category }}</div>
                                 @endif
                             </td>
-                            <td class="px-4 py-2">{{ $sponsor->created_at->diffForHumans() }}</td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">{{ $sponsor->created_at->diffForHumans() }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <a class="hover:text-orange-400 mr-2" href="{{ route('sponsor.edit', $sponsor) }}"><i
                                         class="fas fw-fw fa-edit"></i></a>
-                                <form action="{{ route('sponsor.destroy', $sponsor) }}" method="POST"
-                                    class="inline" onsubmit="return confirmDelete(this)">
+                                <form action="{{ route('sponsor.destroy', $sponsor) }}" method="POST" class="inline"
+                                    onsubmit="return confirmDelete(this)">
                                     @csrf
                                     @method('DELETE')
                                     <button class="hover:text-orange-400" type="submit"><i

@@ -28,21 +28,22 @@
                             <td class="px-4 py-2"><img src="{{ asset('storage/events/logo/' . $event->logo) }}"
                                     class="rounded-full w-10 h-10">
                             </td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <div class="font-bold">{{ $event->name }}</div>
                                 <div class="text-gray-400 mt-1">
                                     <span class="text-gray-500">{{ $event->category }}</span>
                                 </div>
                             </td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <small
                                     class="inline-block rounded-full px-2 font-bold text-white {{ $event->status ? 'bg-green-400' : 'bg-yellow-400' }}">{{ $event->status ? 'PUBLISHED' : 'DRAFT' }}</small>
                             </td>
-                            <td class="px-4 py-2"><i class="fas fa-eye"></i> {{ $event->views ?? 0 }}</td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap"><i class="fas fa-eye"></i> {{ $event->views ?? 0 }}
+                            </td>
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <strong>{{ defaultDateFrom($event->start_date, $event->end_date) }}</strong>
                             </td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 @if ($event->registration_required)
                                     <a href="{{ route('event.registrant', $event) }}"
                                         class="py-1 px-2 bg-SECONDARY hover:bg-SECONDARY/80 text-white rounded-md text-xs">
@@ -53,8 +54,8 @@
                                     <span class="text-gray-500">-</span>
                                 @endif
                             </td>
-                            <td class="px-4 py-2">{{ $event->created_at->diffForHumans() }}</td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">{{ $event->created_at->diffForHumans() }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <a class="hover:text-orange-400 mr-2" href="{{ route('event.edit', $event) }}"><i
                                         class="fas fw-fw fa-edit"></i></a>
                                 <form action="{{ route('event.destroy', $event) }}" method="POST" class="inline"

@@ -41,89 +41,94 @@
     <div class="flex md:flex-row flex-col gap-4">
         <div class="w-full md:w-1/2 rounded-md bg-PRIMARY p-5">
             <small class="text-gray-400 font-light">Latest registrant of events</small>
-            <table class="text-left w-full text-xs text-gray-500 mt-4 rounded-md overflow-hidden">
-                <thead>
-                    <tr>
-                        <th class="py-2 px-2 bg-TERTIARY">
-                            Name
-                        </th>
-                        <th class="py-2 px-2 bg-TERTIARY">
-                            Event
-                        </th>
-                        <th class="py-2 px-2 bg-TERTIARY">
-                            Timestamp
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($event_registrant->slice(0, 5) as $item)
+            <div class="overflow-x-auto mt-6 rounded-md overflow-hidden">
+                <table class="text-left w-full text-xs text-gray-500 mt-4 rounded-md overflow-hidden">
+                    <thead>
                         <tr>
-                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
-                                <p>{{ $item->name }}</p>
-                                <small>{{ $item->email }}</small>
-                            </td>
-                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">{{ $item->event->name }}</td>
-                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
-                                {{ $item->created_at->diffForHumans() }}</td>
+                            <th class="py-2 px-2 bg-TERTIARY">
+                                Name
+                            </th>
+                            <th class="py-2 px-2 bg-TERTIARY">
+                                Event
+                            </th>
+                            <th class="py-2 px-2 bg-TERTIARY">
+                                Timestamp
+                            </th>
                         </tr>
-                    @endforeach
+                    </thead>
+                    <tbody>
+                        @foreach ($event_registrant->slice(0, 5) as $item)
+                            <tr>
+                                <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
+                                    <p>{{ $item->name }}</p>
+                                    <small>{{ $item->email }}</small>
+                                </td>
+                                <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">{{ $item->event->name }}
+                                </td>
+                                <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
+                                    {{ $item->created_at->diffForHumans() }}</td>
+                            </tr>
+                        @endforeach
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="w-full md:w-1/2 rounded-md bg-PRIMARY p-5">
             <small class="text-gray-400 font-light">Latest registrant of competitions</small>
-            <table class="text-left w-full text-xs text-gray-500 mt-4 rounded-md overflow-hidden">
-                <thead>
-                    <tr>
-                        <th class="py-2 px-2 bg-TERTIARY">
-                            Team
-                        </th>
-                        <th class="py-2 px-2 bg-TERTIARY">
-                            Competition
-                        </th>
-                        <th class="py-2 px-2 bg-TERTIARY">
-                            Timestamp
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($competition_registrant->slice(0, 5) as $item)
+            <div class="overflow-x-auto mt-6 rounded-md overflow-hidden">
+                <table class="text-left w-full text-xs text-gray-500 mt-4 rounded-md overflow-hidden">
+                    <thead>
                         <tr>
-                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
-                                <a href="{{ route('search') . '?q=' . $item->registration_number }}">
-                                    <p class="block mb-1">{{ $item->team_name }}</p>
-                                </a>
-                                <small>{{ $item->user->name }}</small>
-                            </td>
-                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
-                                <p class="block mb-1">
-                                    {{ $item->competition->name }}
-                                </p>
-                                @if ($item->isPaid())
-                                    <span class="text-green-500 rounded-md">
-                                        <i class="fas fa-fw fa-check"></i>
-                                        {{ $item->latestPayment()->transaction_status ?? '' }}
-                                    </span>
-                                @elseif($item->latestPayment()->transaction_status == 'expire')
-                                    <span class="text-red-500 rounded-md">
-                                        <i class="fas fa-fw fa-times"></i>
-                                        {{ $item->latestPayment()->transaction_status ?? '' }}
-                                    </span>
-                                @else
-                                    <span class="text-yellow-500 rounded-md">
-                                        <i class="fas fa-fw fa-hourglass"></i>
-                                        {{ $item->latestPayment()->transaction_status ?? '' }}
-                                    </span>
-                                @endif
-                            </td>
-                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
-                                {{ $item->created_at->diffForHumans() }}</td>
+                            <th class="py-2 px-2 bg-TERTIARY">
+                                Team
+                            </th>
+                            <th class="py-2 px-2 bg-TERTIARY">
+                                Competition
+                            </th>
+                            <th class="py-2 px-2 bg-TERTIARY">
+                                Timestamp
+                            </th>
                         </tr>
-                    @endforeach
+                    </thead>
+                    <tbody>
+                        @foreach ($competition_registrant->slice(0, 5) as $item)
+                            <tr>
+                                <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
+                                    <a href="{{ route('search') . '?q=' . $item->registration_number }}">
+                                        <p class="block mb-1">{{ $item->team_name }}</p>
+                                    </a>
+                                    <small>{{ $item->user->name }}</small>
+                                </td>
+                                <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
+                                    <p class="block mb-1">
+                                        {{ $item->competition->name }}
+                                    </p>
+                                    @if ($item->isPaid())
+                                        <span class="text-green-500 rounded-md">
+                                            <i class="fas fa-fw fa-check"></i>
+                                            {{ $item->latestPayment()->transaction_status ?? '' }}
+                                        </span>
+                                    @elseif($item->latestPayment()->transaction_status == 'expire')
+                                        <span class="text-red-500 rounded-md">
+                                            <i class="fas fa-fw fa-times"></i>
+                                            {{ $item->latestPayment()->transaction_status ?? '' }}
+                                        </span>
+                                    @else
+                                        <span class="text-yellow-500 rounded-md">
+                                            <i class="fas fa-fw fa-hourglass"></i>
+                                            {{ $item->latestPayment()->transaction_status ?? '' }}
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
+                                    {{ $item->created_at->diffForHumans() }}</td>
+                            </tr>
+                        @endforeach
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

@@ -22,7 +22,7 @@
                 <tbody class="text-gray-700">
                     @foreach ($admins as $admin)
                         <tr class="hover:bg-TERTIARY border-b border-TERTIARY py-5">
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <div class="flex gap-3 items-center">
                                     <img src="{{ asset($admin->profile_image ? 'storage/profile/' . $admin->profile_image : 'img/sample.png') }}"
                                         class="h-14 bg-zinc-300 rounded-md">
@@ -32,9 +32,9 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-4 py-2">{{ $admin->created_at->diffForHumans() }}</td>
-                            <td class="px-4 py-2">{{ $admin->updated_at->diffForHumans() }}</td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">{{ $admin->created_at->diffForHumans() }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap">{{ $admin->updated_at->diffForHumans() }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <a class="hover:text-orange-400 mr-2"
                                     href="{{ route('admin-management.edit', $admin) }}"><i
                                         class="fas fw-fw fa-edit"></i></a>

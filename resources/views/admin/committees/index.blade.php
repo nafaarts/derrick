@@ -23,7 +23,7 @@
                 <tbody class="text-gray-700">
                     @foreach ($committees as $committee)
                         <tr class="hover:bg-TERTIARY border-b border-TERTIARY py-5">
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <div class="flex gap-3 items-center">
                                     <img src="{{ asset('storage/committees/' . $committee->photo) }}"
                                         class="h-14 bg-zinc-300 rounded-md">
@@ -33,17 +33,17 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <small
                                     class="inline-block rounded-full px-2 font-bold text-white {{ $committee->status ? 'bg-green-400' : 'bg-yellow-400' }}">{{ $committee->status ? 'PUBLISHED' : 'DRAFT' }}</small>
                             </td>
-                            <td class="px-4 py-2">{{ $committee->created_at->diffForHumans() }}</td>
-                            <td class="px-4 py-2">{{ $committee->updated_at->diffForHumans() }}</td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 py-2 whitespace-nowrap">{{ $committee->created_at->diffForHumans() }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap">{{ $committee->updated_at->diffForHumans() }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap">
                                 <a class="hover:text-orange-400 mr-2" href="{{ route('committee.edit', $committee) }}"><i
                                         class="fas fw-fw fa-edit"></i></a>
-                                <form action="{{ route('committee.destroy', $committee) }}" method="POST"
-                                    class="inline" onsubmit="return confirmDelete(this)">
+                                <form action="{{ route('committee.destroy', $committee) }}" method="POST" class="inline"
+                                    onsubmit="return confirmDelete(this)">
                                     @csrf
                                     @method('DELETE')
                                     <button class="hover:text-orange-400" type="submit"><i
