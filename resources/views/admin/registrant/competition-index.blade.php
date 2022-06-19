@@ -50,12 +50,17 @@
                             </td>
                             <td class="px-4 py-4 whitespace-nowrap">
                                 @if ($person->isPaid())
-                                    <span class="px-2 py-1 bg-green-500 rounded-md text-white">
+                                    <span class="bg-green-500 text-white rounded-md">
                                         <i class="fas fa-fw fa-check"></i>
                                         {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
+                                @elseif($person->latestPayment()->transaction_status == 'expire')
+                                    <span class="bg-red-500 text-white rounded-md">
+                                        <i class="fas fa-fw fa-times"></i>
+                                        {{ $person->latestPayment()->transaction_status ?? '' }}
+                                    </span>
                                 @else
-                                    <span class="px-2 py-1 bg-yellow-500 rounded-md text-white">
+                                    <span class="bg-yellow-500 text-white rounded-md">
                                         <i class="fas fa-fw fa-hourglass"></i>
                                         {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
