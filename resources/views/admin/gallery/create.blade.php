@@ -9,12 +9,12 @@
         enctype="multipart/form-data">
         <h2>Add Gallery</h2>
         <hr class="my-3 border-TERTIARY">
-        <div class="flex" x-data="imageViewer()">
-            <label for="image" class="flex-1 mr-3 overflow-hidden rounded-md p-2 image-form">
+        <div class="flex md:flex-row flex-col" x-data="imageViewer()">
+            <label for="image" class="w-full md:flex-1 mr-3 overflow-hidden rounded-md p-2 image-form">
                 <img :src="imageUrl" class="object-cover rounded w-full">
                 <input type="file" class="hidden" name="image" id="image" accept="image/*" @change="fileChosen">
             </label>
-            <div class="form flex-1">
+            <div class="form w-full md:flex-1">
                 @csrf
                 <div class="flex flex-col mb-2">
                     <label for="alt">Alt</label>
