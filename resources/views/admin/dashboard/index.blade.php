@@ -58,12 +58,13 @@
                 <tbody>
                     @foreach ($event_registrant->slice(0, 5) as $item)
                         <tr>
-                            <td class="py-2 px-2 border-b border-TERTIARY">
+                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
                                 <p>{{ $item->name }}</p>
                                 <small>{{ $item->email }}</small>
                             </td>
-                            <td class="py-2 px-2 border-b border-TERTIARY">{{ $item->event->name }}</td>
-                            <td class="py-2 px-2 border-b border-TERTIARY">{{ $item->created_at->diffForHumans() }}</td>
+                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">{{ $item->event->name }}</td>
+                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
+                                {{ $item->created_at->diffForHumans() }}</td>
                         </tr>
                     @endforeach
 
@@ -89,19 +90,24 @@
                 <tbody>
                     @foreach ($competition_registrant->slice(0, 5) as $item)
                         <tr>
-                            <td class="py-2 px-2 border-b border-TERTIARY">
+                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
                                 <a href="{{ route('search') . '?q=' . $item->registration_number }}">
                                     <p class="block mb-1">{{ $item->team_name }}</p>
                                 </a>
                                 <small>{{ $item->user->name }}</small>
                             </td>
-                            <td class="py-2 px-2 border-b border-TERTIARY">
+                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
                                 <p class="block mb-1">
                                     {{ $item->competition->name }}
                                 </p>
                                 @if ($item->isPaid())
                                     <span class="text-green-500 rounded-md">
                                         <i class="fas fa-fw fa-check"></i>
+                                        {{ $item->latestPayment()->transaction_status ?? '' }}
+                                    </span>
+                                @elseif($item->latestPayment()->transaction_status == 'expire')
+                                    <span class="text-red-500 rounded-md">
+                                        <i class="fas fa-fw fa-times"></i>
                                         {{ $item->latestPayment()->transaction_status ?? '' }}
                                     </span>
                                 @else
@@ -111,7 +117,8 @@
                                     </span>
                                 @endif
                             </td>
-                            <td class="py-2 px-2 border-b border-TERTIARY">{{ $item->created_at->diffForHumans() }}</td>
+                            <td class="py-2 px-2 border-b border-TERTIARY whitespace-nowrap">
+                                {{ $item->created_at->diffForHumans() }}</td>
                         </tr>
                     @endforeach
 
