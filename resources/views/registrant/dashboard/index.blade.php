@@ -22,10 +22,17 @@
 
     @if (count($alert) > 0)
         @foreach ($alert as $item)
-            <div class="p-4 mb-4 text-sm text-{{ $item['type'] }}-700 bg-{{ $item['type'] }}-100 rounded-lg dark:bg-{{ $item['type'] }}-200 dark:text-{{ $item['type'] }}-800"
-                role="alert">
-                {{ $item['message'] }}
-            </div>
+            @if ($item['type'] == 'danger')
+                <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                    role="alert">
+                    {{ $item['message'] }}
+                </div>
+            @else
+                <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
+                    role="alert">
+                    {{ $item['message'] }}
+                </div>
+            @endif
         @endforeach
     @endif
 

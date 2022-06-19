@@ -14,7 +14,8 @@ module.exports = {
                 HEADINGTEXT: "#832273",
                 BACKGROUND: "#573021",
                 TEXTFROM: "#D45012",
-                TEXTTO: "#7E1B6B"
+                TEXTTO: "#7E1B6B",
+                RED: "#FF0000"
             },
         },
     },
