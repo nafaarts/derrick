@@ -18,6 +18,17 @@
             class="h-20 w-20 md:w-36 md:h-36" loop autoplay></lottie-player>
     </div>
 
+    {{-- alert --}}
+
+    @if ($alert->count() > 0)
+        @foreach ($alert as $item)
+            <div class="p-4 mb-4 text-sm text-{{ $item['type'] }}-700 bg-{{ $item['type'] }}-100 rounded-lg dark:bg-{{ $item['type'] }}-200 dark:text-{{ $item['type'] }}-800"
+                role="alert">
+                {{ $item['message'] }}
+            </div>
+        @endforeach
+    @endif
+
     <div class="bg-PRIMARY rounded-lg py-8 px-10 overflow-hidden">
         <h5 class="text-xs text-gray-500">Registered Competition :</h5>
         <hr class="my-3 border-TERTIARY">

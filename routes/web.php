@@ -57,7 +57,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/events', function () {
-    $competitions = Competition::latest()->get();
+    $competitions = Competition::where('status')->latest()->get();
     $events = Event::all();
     $preEvent = $events->where('category', 'PRE')->where('status', 1)->all();
     $postEvent = $events->where('category', 'POST')->where('status', 1)->all();
@@ -142,7 +142,26 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             return view('admin.dashboard.index', compact('competition', 'event', 'competition_registrant', 'event_registrant'));
         } else {
             $registers = Registrant::where('user_id', auth()->id())->first();
-            return view('registrant.dashboard.index', compact('registers'));
+            $alert = [];
+            if (!$registers->isPaid())
+                array_push($alert, [
+                    'type' => 'red',
+                    'message' => 'You have not paid for your registration. Please pay your registration fee to continue.'
+                ]);
+
+            if (!$registers->user->profile_picture)
+                array_push($alert, [
+                    'type' => 'red',
+                    'message' => 'You have not uploaded your profile picture. Please upload your profile picture to continue.'
+                ]);
+
+            if ($registers->members->count() < $registers->competition->max_member)
+                array_push($alert, [
+                    'type' => 'yellow',
+                    'message' => 'Please add more member to your team.'
+                ]);
+
+            return view('registrant.dashboard.index', compact('registers', 'alert'));
         }
     })->name('dashboard');
 
