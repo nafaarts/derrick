@@ -20,7 +20,7 @@
 
     {{-- alert --}}
 
-    @if ($alert->count() > 0)
+    @if (count($alert) > 0)
         @foreach ($alert as $item)
             <div class="p-4 mb-4 text-sm text-{{ $item['type'] }}-700 bg-{{ $item['type'] }}-100 rounded-lg dark:bg-{{ $item['type'] }}-200 dark:text-{{ $item['type'] }}-800"
                 role="alert">
