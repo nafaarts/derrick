@@ -36,7 +36,7 @@
                     @foreach ($registrant as $person)
                         <tr class="hover:bg-TERTIARY border-b border-TERTIARY py-5">
                             <td class="px-4 py-4 whitespace-nowrap">
-                                <img src="{{ asset('storage/profile/' . $person->user->profile_image) }}"
+                                <img src="{{ asset($person->user->profile_image ? 'storage/profile/' . $person->user->profile_image : 'img/sample.png') }}"
                                     class="w-8 h-8 rounded-full" alt="">
                             </td>
                             <td class="px-4 py-4 whitespace-nowrap">
