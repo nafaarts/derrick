@@ -54,14 +54,14 @@
                                         <i class="fas fa-fw fa-check"></i>
                                         {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
-                                @elseif($person->latestPayment()->transaction_status == 'expire')
-                                    <span class="px-2 py-1 bg-red-500 text-white rounded-md">
-                                        <i class="fas fa-fw fa-times"></i>
+                                @elseif($person->latestPayment()->transaction_status == 'pending')
+                                    <span class="px-2 py-1 bg-yellow-500 text-white rounded-md">
+                                        <i class="fas fa-fw fa-hourglass"></i>
                                         {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
                                 @else
-                                    <span class="px-2 py-1 bg-yellow-500 text-white rounded-md">
-                                        <i class="fas fa-fw fa-hourglass"></i>
+                                    <span class="px-2 py-1 bg-red-500 text-white rounded-md">
+                                        <i class="fas fa-fw fa-times"></i>
                                         {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
                                 @endif
