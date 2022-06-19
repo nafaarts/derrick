@@ -145,19 +145,19 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             $alert = [];
             if (!$registers->isPaid())
                 array_push($alert, [
-                    'type' => 'red',
+                    'type' => 'danger',
                     'message' => 'You have not paid for your registration. Please pay your registration fee to continue.'
                 ]);
 
             if (!$registers->user->profile_picture)
                 array_push($alert, [
-                    'type' => 'red',
+                    'type' => 'danger',
                     'message' => 'You have not uploaded your profile picture. Please upload your profile picture to continue.'
                 ]);
 
             if ($registers->members->count() < $registers->competition->max_member)
                 array_push($alert, [
-                    'type' => 'yellow',
+                    'type' => 'warning',
                     'message' => 'Please add more member to your team.'
                 ]);
 
