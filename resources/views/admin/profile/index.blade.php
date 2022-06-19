@@ -28,7 +28,7 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <div class="flex gap-2">
+                        <div class="flex md:flex-row flex-col gap-2">
                             <div class="w-full md:w-1/2">
                                 <label class="text-gray-600 capitalize">Change Password</label></br>
                                 <input type="password" name="password" id="password" class="mt-1 w-full"
@@ -58,8 +58,7 @@
                                 <small class="text-red-500">{{ $message }}</small>
                             @enderror
                         </div>
-
-                        <div class="flex gap-2 mb-4">
+                        <div class="flex md:flex-row flex-col gap-2 mb-4">
                             <div class="w-full md:w-1/2">
                                 <label class="text-gray-600 capitalize">Major <span class="text-red-500">*</span></label></br>
                                 <input type="text" name="major" id="major" class="mt-1 w-full"
@@ -79,7 +78,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="flex gap-2 mb-4">
+                        <div class="flex md:flex-row flex-col gap-2 mb-4">
                             <div class="w-full md:w-1/2">
                                 <label class="text-gray-600 capitalize">ID Card <span class="text-red-500">*</span></label></br>
                                 <input type="file" name="id_card" id="id_card" class="mt-1 w-full"
@@ -112,7 +111,6 @@
                     @endcan
                 </div>
                 <div class="w-full md:w-1/5 mb-5">
-
                     <label class="text-gray-600 capitalize">upload photo <span class="text-red-500">*</span></label>
                     </br>
                     <div class="mt-1 image-form">

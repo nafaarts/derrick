@@ -29,17 +29,17 @@
                 <td class="py-2">Transaction Status</td>
                 <td class="font-bold py-2 pl-12 uppercase">
                     @if ($registrant->isPaid())
-                        <span class="px-2 py-1 bg-green-500 text-white rounded-md">
+                        <span class="text-green-500 rounded-md">
                             <i class="fas fa-fw fa-check"></i>
                             {{ $current_transaction->transaction_status ?? '' }}
                         </span>
                     @elseif($current_transaction->transaction_status == 'pending')
-                        <span class="px-2 py-1 bg-yellow-500 text-white rounded-md">
+                        <span class="text-yellow-500 rounded-md">
                             <i class="fas fa-fw fa-hourglass"></i>
                             {{ $current_transaction->transaction_status ?? '' }}
                         </span>
                     @else
-                        <span class="px-2 py-1 bg-red-500 text-white rounded-md">
+                        <span class="text-red-500 rounded-md">
                             <i class="fas fa-fw fa-times"></i>
                             {{ $current_transaction->transaction_status ?? '' }}
                         </span>
