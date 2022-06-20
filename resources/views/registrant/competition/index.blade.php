@@ -13,7 +13,7 @@
             </div>
             <div class="text-sm w-full">
                 <div class="flex flex-col-reverse justify-start items-start md:flex-row md:justify-between md:items-center">
-                    <p class="text-gray-500 my-2">REG NO <strong>#IDFDC0001</strong></p>
+                    <p class="text-gray-500 my-2">REG NO <strong>#{{ $registers->registration_number }}</strong></p>
                     <span
                         class="py-1 px-4 text-white shadow-sm rounded-md mb-2 md:mb-0 uppercase @if ($registers->isPaid()) bg-green-500 @else bg-yellow-500 @endif">
                         <i class="fas fa-fw @if ($registers->isPaid()) fa-circle-check @else fa-hourglass @endif"></i>
