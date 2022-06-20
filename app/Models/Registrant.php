@@ -58,6 +58,6 @@ class Registrant extends Model
 
     public function latestPayment()
     {
-        return $this->transactions()->latest()->first();
+        return ($this->transactions->count() > 0) ? $this->transactions->last() : null;
     }
 }
