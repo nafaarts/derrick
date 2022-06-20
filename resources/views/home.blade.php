@@ -156,64 +156,68 @@
     @endif
 
     {{-- Speech From PM VPM --}}
-    <section id="speech" class="derrick-container py-10 mb-10">
-        <h2
-            class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
-            speech from
-            pm and vpm</h2>
-        <div class="flex flex-col-reverse md:flex-row items-center mt-10 px-5 md:px-20">
-            <div class="w-full md:w-2/3 p-5 text-center md:text-left" data-aos="fadein" data-aos-delay="200">
-                <h4 class="md:text-xl text-base font-sans mb-7">"Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Rem
-                    aliquid
-                    perferendis
-                    et inventore!
-                    Ipsum,
-                    esse
-                    voluptatibus placeat magnam voluptas quam quidem accusantium, dolores nulla vero, libero provident
-                    suscipit
-                    fuga minus"</h4>
-                <div class="flex md:flex-row flex-col md:justify-start justify-center gap-3">
-                    <strong class="text-SECONDARY">AGUS BUDIMAN</strong>
-                    <span class="font-light border-0 md:border-l-2 border-black pl-0 md:pl-3">PROJECT
-                        MANAGER</span>
+    @if (false)
+        <section id="speech" class="derrick-container py-10 mb-10">
+            <h2
+                class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
+                speech from
+                pm and vpm</h2>
+            <div class="flex flex-col-reverse md:flex-row items-center mt-10 px-5 md:px-20">
+                <div class="w-full md:w-2/3 p-5 text-center md:text-left" data-aos="fadein" data-aos-delay="200">
+                    <h4 class="md:text-xl text-base font-sans mb-7">"Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Rem
+                        aliquid
+                        perferendis
+                        et inventore!
+                        Ipsum,
+                        esse
+                        voluptatibus placeat magnam voluptas quam quidem accusantium, dolores nulla vero, libero provident
+                        suscipit
+                        fuga minus"</h4>
+                    <div class="flex md:flex-row flex-col md:justify-start justify-center gap-3">
+                        <strong class="text-SECONDARY">AGUS BUDIMAN</strong>
+                        <span class="font-light border-0 md:border-l-2 border-black pl-0 md:pl-3">PROJECT
+                            MANAGER</span>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 p-2 flex justify-center md:justify-end">
+                    <div class="rounded-full w-36 h-36 md:w-64 md:h-64 border-b-8 border-l-8 border-SECONDARY overflow-hidden"
+                        data-aos="fadein" data-aos-delay="100">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.bryantstratton.edu%2F~%2Fmedia%2Foutcomes-computer-support-specialist-300x250.ashx%3Fla%3Den%26hash%3DDE3A6B3B77B0B9BF0ECAEF6D104C306615AF37BD&f=1&nofb=1"
+                            alt="PM" class="w-full scale-150">
+                    </div>
                 </div>
             </div>
-            <div class="w-full md:w-1/3 p-2 flex justify-center md:justify-end">
-                <div class="rounded-full w-36 h-36 md:w-64 md:h-64 border-b-8 border-l-8 border-SECONDARY overflow-hidden"
-                    data-aos="fadein" data-aos-delay="100">
-                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.bryantstratton.edu%2F~%2Fmedia%2Foutcomes-computer-support-specialist-300x250.ashx%3Fla%3Den%26hash%3DDE3A6B3B77B0B9BF0ECAEF6D104C306615AF37BD&f=1&nofb=1"
-                        alt="PM" class="w-full scale-150">
+            <div class="flex flex-col md:flex-row items-center mt-10 px-5 md:px-20">
+                <div class="w-full md:w-1/3 p-2 flex justify-center md:justify-start">
+                    <div class="rounded-full w-36 h-36 md:w-64 md:h-64 border-b-8 border-l-8 border-SECONDARY overflow-hidden"
+                        data-aos="fadein" data-aos-delay="100">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.bryantstratton.edu%2F~%2Fmedia%2Foutcomes-computer-support-specialist-300x250.ashx%3Fla%3Den%26hash%3DDE3A6B3B77B0B9BF0ECAEF6D104C306615AF37BD&f=1&nofb=1"
+                            alt="PM" class="w-full scale-150">
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 p-5 text-center md:text-left" data-aos="fadein" data-aos-delay="200">
+                    <h4 class="md:text-xl text-base font-sans mb-7">"Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Rem
+                        aliquid
+                        perferendis
+                        et inventore!
+                        Ipsum,
+                        esse
+                        voluptatibus placeat magnam voluptas quam quidem accusantium, dolores nulla vero, libero provident
+                        suscipit
+                        fuga minus"</h4>
+                    <div class="flex md:flex-row flex-col md:justify-start justify-center gap-3">
+                        <strong class="text-SECONDARY">AGUS BUDIMAN</strong>
+                        <span class="font-light border-0 md:border-l-2 border-black pl-0 md:pl-3">VICE PROJECT
+                            MANAGER</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-col md:flex-row items-center mt-10 px-5 md:px-20">
-            <div class="w-full md:w-1/3 p-2 flex justify-center md:justify-start">
-                <div class="rounded-full w-36 h-36 md:w-64 md:h-64 border-b-8 border-l-8 border-SECONDARY overflow-hidden"
-                    data-aos="fadein" data-aos-delay="100">
-                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.bryantstratton.edu%2F~%2Fmedia%2Foutcomes-computer-support-specialist-300x250.ashx%3Fla%3Den%26hash%3DDE3A6B3B77B0B9BF0ECAEF6D104C306615AF37BD&f=1&nofb=1"
-                        alt="PM" class="w-full scale-150">
-                </div>
-            </div>
-            <div class="w-full md:w-2/3 p-5 text-center md:text-left" data-aos="fadein" data-aos-delay="200">
-                <h4 class="md:text-xl text-base font-sans mb-7">"Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Rem
-                    aliquid
-                    perferendis
-                    et inventore!
-                    Ipsum,
-                    esse
-                    voluptatibus placeat magnam voluptas quam quidem accusantium, dolores nulla vero, libero provident
-                    suscipit
-                    fuga minus"</h4>
-                <div class="flex md:flex-row flex-col md:justify-start justify-center gap-3">
-                    <strong class="text-SECONDARY">AGUS BUDIMAN</strong>
-                    <span class="font-light border-0 md:border-l-2 border-black pl-0 md:pl-3">VICE PROJECT
-                        MANAGER</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     @if (count($preEvent) > 0)
         {{-- Pre Event --}}
