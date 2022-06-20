@@ -1,11 +1,11 @@
 <div id="sidebar"
     class="h-full z-30 inset-y-0 left-0 transition duration-300 transform bg-PRIMARY overflow-y-auto translate-x-0  static inset-0 flex flex-col justify-between hide">
     <div>
-        <div class="flex items-center justify-center py-7">
+        <a href="{{ route('home') }}" class="flex items-center justify-center py-7">
             <img src="{{ asset('logo.png') }}" alt=" Logo" id="main-logo" width="20">
             <h2 class="ml-2 md:block hidden"><b class="text-orange-500">DERRICK</b> <span class="text-gray-500 font-light"
                     x-text="new Date().getFullYear()"></span></h2>
-        </div>
+        </a>
         <nav class="text-xs px-1">
             <a class=" menu-link md:text-xs text-lg flex rounded-md items-center mt-4 py-2 px-6 {{ Request::is('dashboard*') ? 'font-bold text-orange-500' : 'text-gray-500' }}  hover:text-white hover:bg-orange-400"
                 href="{{ route('dashboard') }}">
