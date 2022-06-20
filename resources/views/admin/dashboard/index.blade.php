@@ -109,7 +109,7 @@
                                             <i class="fas fa-fw fa-check"></i>
                                             {{ $item->latestPayment()->transaction_status ?? '' }}
                                         </span>
-                                    @elseif($item->latestPayment()->transaction_status == 'pending')
+                                    @elseif(($item->latestPayment()->transaction_status ?? '') == 'pending')
                                         <span class="text-yellow-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-hourglass"></i>
                                             {{ $item->latestPayment()->transaction_status ?? '' }}
