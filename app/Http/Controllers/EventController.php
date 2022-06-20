@@ -53,7 +53,7 @@ class EventController extends Controller
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'status' => 'required',
             'registration_required' => 'nullable',
-            'wa_link' => 'required',
+            'wa_link' => 'nullable',
         ]);
 
         if (request()->has('logo')) $request->logo->store('public/events/logo');
@@ -71,7 +71,7 @@ class EventController extends Controller
             'views' => 0,
             'status' => $request->status,
             'registration_required' => request()->has('registration_required') ? $request->registration_required : 0,
-            'wa_link' => $request->wa_link,
+            'wa_link' => $request->wa_link ?? '',
         ]);
 
         return redirect()->route('event.index')->with('success', 'Event created successfully.');
@@ -111,7 +111,7 @@ class EventController extends Controller
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'status' => 'required',
             'registration_required' => 'nullable',
-            'wa_link' => 'required',
+            'wa_link' => 'nullable',
         ]);
 
         if (request()->has('logo')) {
