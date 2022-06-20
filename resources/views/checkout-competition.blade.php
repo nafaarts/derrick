@@ -35,8 +35,8 @@
         </div>
         <div class="w-full md:w-1/3 p-3">
             <div class="w-full border border-TERTIARY rounded-md text-center p-10 bg-white/50 hidden md:block">
-                <img src="{{ asset('storage/competition/logo/' . $registrant->competition->logo) }}"
-                    class="mx-auto" alt="competition Logo" width="100">
+                <img src="{{ asset('storage/competition/logo/' . $registrant->competition->logo) }}" class="mx-auto"
+                    alt="competition Logo" width="100">
                 <strong
                     class="block mt-5 text-HEADINGTEXT font-bold text-xl">{{ $registrant->competition->name }}</strong><br>
                 <small
@@ -55,7 +55,8 @@
 @endsection
 
 @section('head')
-    <script type="text/javascript" src="{{env('MIDTRANS_IS_PRODUCTION') 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}"
+    <script type="text/javascript"
+        src="{{ env('MIDTRANS_IS_PRODUCTION') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 @endsection
 
