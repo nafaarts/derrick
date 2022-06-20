@@ -53,7 +53,7 @@ class Registrant extends Model
 
     public function isPaid()
     {
-        return ($this->transactions->count() > 0) ? $this->transactions->whereIn('transaction_status', ['settlement', 'capture'])->count() > 0 : false;
+        return $this->transactions->whereIn('transaction_status', ['settlement', 'capture'])->count() > 0;
     }
 
     public function latestPayment()
