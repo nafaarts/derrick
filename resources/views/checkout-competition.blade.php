@@ -55,7 +55,7 @@
 @endsection
 
 @section('head')
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    <script type="text/javascript" src="{{env('MIDTRANS_IS_PRODUCTION') 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 @endsection
 
