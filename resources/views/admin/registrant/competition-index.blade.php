@@ -54,6 +54,11 @@
                                         <i class="fas fa-fw fa-check"></i>
                                         {{ $person->latestPayment()->transaction_status ?? '' }}
                                     </span>
+                                @elseif($person->latestPayment()->transaction_status)
+                                    <span class="px-2 py-1 text-yellow-500 font-bold rounded-md">
+                                        <i class="fas fa-fw fa-times"></i>
+                                        UNPAID
+                                    </span>
                                 @elseif(($person->latestPayment()->transaction_status ?? '') == 'pending')
                                     <span class="px-2 py-1 text-yellow-500 font-bold rounded-md">
                                         <i class="fas fa-fw fa-hourglass"></i>
