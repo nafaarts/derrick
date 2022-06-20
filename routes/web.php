@@ -41,15 +41,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $countdown = env('COUNTDOWN_SHOW') ? env('COUNTDOWN_SET') : "";
 
-    $competitions = Competition::latest()->get();
+    $competitions = Competition::where('status', 1)->latest()->get();
     $events = Event::all();
     $preEvent = $events->where('category', 'PRE')->where('status', 1)->where('start_date', '>', date('Y-m') . '-00')->slice(0, 4);
     $postEvent = $events->where('category', 'POST')->where('status', 1)->all();
     $blogs = Blog::where('status', 'published')->latest()->limit(3)->get();
 
     $sponsors = Sponsor::all();
-    $supported = $sponsors->where('type', 'supported')->all();
-    $organized = $sponsors->where('type', 'organized')->all();
+    $supported = $sponsors->where('status', 1)->where('type', 'supported')->all();
+    $organized = $sponsors->where('status', 1)->where('type', 'organized')->all();
 
     $crews = Committee::all();
 
@@ -118,9 +118,9 @@ Route::get('/gallery', function () {
 
 Route::get('/sponsors', function () {
     $sponsors = Sponsor::all();
-    $gold = $sponsors->where('sponsor_category', 'gold')->all();
-    $silver = $sponsors->where('sponsor_category', 'silver')->all();
-    $bronze = $sponsors->where('sponsor_category', 'bronze')->all();
+    $gold = $sponsors->where('status', 1)->where('sponsor_category', 'gold')->all();
+    $silver = $sponsors->where('status', 1)->where('sponsor_category', 'silver')->all();
+    $bronze = $sponsors->where('status', 1)->where('sponsor_category', 'bronze')->all();
     return view('sponsor', compact('gold', 'silver', 'bronze'));
 })->name('sponsors');
 
