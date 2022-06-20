@@ -56,7 +56,7 @@
                                     </span>
                                 @elseif($person->latestPayment() == null)
                                     <span class="px-2 py-1 text-yellow-500 font-bold rounded-md">
-                                        <i class="fas fa-fw fa-times"></i>
+                                        <i class="fas fa-fw fa-info"></i>
                                         UNPAID
                                     </span>
                                 @elseif(($person->latestPayment()->transaction_status ?? '') == 'pending')

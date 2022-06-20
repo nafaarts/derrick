@@ -109,7 +109,7 @@
                                             <i class="fas fa-fw fa-check"></i>
                                             {{ $item->latestPayment()->transaction_status ?? '' }}
                                         </span>
-                                    @elseif($person->latestPayment() == null)
+                                    @elseif($item->latestPayment() == null)
                                         <span class="px-2 py-1 text-yellow-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-info"></i>
                                             UNPAID
