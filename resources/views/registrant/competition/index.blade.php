@@ -57,6 +57,14 @@
 
             </div>
         </div>
+        @if ($registers->isPaid() ?? $registers->competition->wa_link != null)
+            <div class="bg-PRIMARY p-4 md:p-8 rounded-md">
+                <a href="{{ $registers->competition->wa_link }}" target="_blank"
+                    class="text-lg text-green-500 hover:text-green-500/80"><i class="fab fa-fw fa-whatsapp"></i>
+                    Join
+                    whatsapp group</a>
+            </div>
+        @endif
         <div class="bg-PRIMARY p-4 md:p-8 rounded-md">
             <div class="flex justify-between">
                 <h5 class="text-xs text-gray-500">Leader Profile:</h5>
