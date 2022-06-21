@@ -57,7 +57,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/events', function () {
-    $competitions = Competition::where('status')->latest()->get();
+    $competitions = Competition::where('status', 1)->latest()->get();
     $events = Event::all();
     $preEvent = $events->where('category', 'PRE')->where('status', 1)->all();
     $postEvent = $events->where('category', 'POST')->where('status', 1)->all();
