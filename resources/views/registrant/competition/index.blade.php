@@ -63,7 +63,7 @@
                 <p>Please <strong>Join Whatsapp Group</strong> for more information about the events. <i
                         class="fas fa-fw fa-arrow-right text-green-500 md:inline hidden"></i></p>
                 <a href="{{ $registers->competition->wa_link }}" target="_blank"
-                    class="text-lg bg-green-500 hover:bg-green-500/80 text-white rounded-md py-2 px-4 md:mt-0 mt-3"><i
+                    class="text-xs md:text-lg bg-green-500 hover:bg-green-500/80 text-white rounded-md py-2 px-4 md:mt-0 mt-3"><i
                         class="fab fa-fw fa-whatsapp"></i>
                     Join
                     whatsapp group</a>
