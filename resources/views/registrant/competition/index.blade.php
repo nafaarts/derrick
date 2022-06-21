@@ -58,9 +58,10 @@
             </div>
         </div>
         @if ($registers->isPaid() ?? $registers->competition->wa_link != null)
-            <div class="bg-PRIMARY p-4 md:p-8 rounded-md mb-4 flex md:flex-row flex-col justify-between items-center">
+            <div
+                class="bg-PRIMARY p-4 md:p-8 rounded-md mb-4 flex md:flex-row flex-col justify-between items-start md:items-center">
                 <p>Please <strong>Join Whatsapp Group</strong> for more information about the events. <i
-                        class="fas fa-fw fa-arrow-right text-green-500"></i></p>
+                        class="fas fa-fw fa-arrow-right text-green-500 md:inline hidden"></i></p>
                 <a href="{{ $registers->competition->wa_link }}" target="_blank"
                     class="text-lg bg-green-500 hover:bg-green-500/80 text-white rounded-md py-2 px-4"><i
                         class="fab fa-fw fa-whatsapp"></i>
