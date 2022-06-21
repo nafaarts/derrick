@@ -15,15 +15,16 @@
                 <div class="mb-4 flex gap-2" x-data="{ name: '{{ old('name') }}', code: '{{ old('code') }}' }">
                     <div class="w-3/4">
                         <label class="text-gray-600 capitalize">title <span class="text-red-500">*</span></label></br>
-                        <input type="text" name="name" id="name" class="mt-1 w-full" placeholder="Add competition title"
-                            x-model="name">
+                        <input type="text" name="name" id="name" class="mt-1 w-full"
+                            placeholder="Add competition title" x-model="name">
                         @error('name')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="w-1/4">
                         <label class="text-gray-600 capitalize">code <span class="text-red-500">*</span></label></br>
-                        <input type="text" name="code" id="code" class="mt-1 w-full" placeholder="Add competition code"
+                        <input type="text" name="code" id="code" class="mt-1 w-full"
+                            placeholder="Add competition code"
                             x-bind:value="code != '' ? code : name != '' ? name.match(/[A-Z]/g).join('') : ''">
                         @error('code')
                             <small class="text-red-500">{{ $message }}</small>
@@ -32,8 +33,7 @@
                 </div>
                 <div class="flex gap-2 mb-4">
                     <div class="w-1/2">
-                        <label class="text-gray-600 capitalize">Prize Pool <span
-                                class="text-red-500">*</span></label></br>
+                        <label class="text-gray-600 capitalize">Prize Pool <span class="text-red-500">*</span></label></br>
                         <input type="number" name="prize_pool" id="prize_pool" class="mt-1 w-full"
                             placeholder="Competition Prize Pool" value="{{ old('prize_pool') }}">
                         @error('prize_pool')
@@ -41,8 +41,7 @@
                         @enderror
                     </div>
                     <div class="w-1/2">
-                        <label class="text-gray-600 capitalize">Max Member <span
-                                class="text-red-500">*</span></label></br>
+                        <label class="text-gray-600 capitalize">Max Member <span class="text-red-500">*</span></label></br>
                         <input type="number" name="max_member" id="max_member" class="mt-1 w-full"
                             placeholder="Max member allowed" value="{{ old('max_member') }}">
                         @error('max_member')
@@ -52,8 +51,7 @@
                 </div>
                 <div class="flex gap-2 mb-4">
                     <div class="w-1/2">
-                        <label class="text-gray-600 capitalize">start date <span
-                                class="text-red-500">*</span></label></br>
+                        <label class="text-gray-600 capitalize">start date <span class="text-red-500">*</span></label></br>
                         <input type="date" name="start_date" id="start_date" class="mt-1 w-full"
                             value="{{ old('start_date') }}">
                         @error('start_date')
@@ -68,6 +66,14 @@
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
+                </div>
+                <div class="mb-4">
+                    <label class="text-gray-600 capitalize">Whatsapp Group Link </label></br>
+                    <input type="text" name="wa_link" id="wa_link" class="mt-1 w-full"
+                        placeholder="Add Whatsapp Group Link" value="{{ old('wa_link') }}">
+                    @error('wa_link')
+                        <small class="text-red-500">{{ $message }}</small>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label class="text-gray-600 capitalize">description <span class="text-red-500">*</span></label></br>

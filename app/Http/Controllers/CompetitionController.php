@@ -58,6 +58,7 @@ class CompetitionController extends Controller
             'max_member' => 'required|integer',
             'guide_file' => 'required|mimes:pdf|max:5048',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10048',
+            'wa_link' => 'nullable'
         ]);
 
         if ($request->hasFile('logo')) {
@@ -90,6 +91,7 @@ class CompetitionController extends Controller
             'max_member' => $request->max_member,
             'guide_file' => $request->guide_file->hashName(),
             'photo' => $request->photo->hashName(),
+            'wa_link' => $request->wa_link ?? ''
         ]);
 
         return redirect()->route('competition.index')->with('success', 'Competition created successfully');
@@ -135,6 +137,7 @@ class CompetitionController extends Controller
             'max_member' => 'required|integer',
             'guide_file' => 'mimes:pdf|max:5048',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:10048',
+            'wa_link' => 'nullable'
         ]);
 
         if ($request->hasFile('logo')) {
@@ -173,6 +176,7 @@ class CompetitionController extends Controller
             'max_member' => $request->max_member,
             'guide_file' => $guide_book ?? $competition->guide_file,
             'photo' => $photo ?? $competition->photo,
+            'wa_link' => $request->wa_link ?? ''
         ]);
 
         return redirect()->route('competition.index')->with('success', 'Competition updated successfully');

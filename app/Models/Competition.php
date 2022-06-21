@@ -29,6 +29,7 @@ class Competition extends Model
         'guide_file',
         'photo',
         'views',
+        'wa_link',
     ];
 
     public function scopeFilter($query)
