@@ -37,7 +37,7 @@
                                 <h1 class="font-extrabold text-5xl">
                                     DERRICK <span class="font-light">{{ date('Y') }}</span>
                                 </h1>
-                                <h5 class="mt-10 text-lg">Riposting to Future Energy Challanges by Developing
+                                <h5 class="mt-10 text-lg">"Riposting to Future Energy Challanges by Developing
                                     Human-Intellectual
                                     Centered
                                     on Technological Innovation"</h5>
@@ -61,7 +61,7 @@
                     determined to be an important part in the development of Indonesian Human Resources in accordance with
                     the development of society 5.0. With this, DERRICK 2022 seeks to be flexible in following and responding
                     to the very fast development pattern of the times in terms of energy transition. With the big theme
-                    <strong>Riposting to Future Energy Challenges by Developing Human-Intellectual Centered on
+                    <strong>"Riposting to Future Energy Challenges by Developing Human-Intellectual Centered on
                         Technological
                         Innovation”</strong>. This is manifested in the form of a competition which discusses the problems
                     that exist in

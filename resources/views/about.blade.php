@@ -26,7 +26,7 @@
         <p class="font-light md:text-left text-justify indent-8" data-aos="fadein" data-aos-delay="300">
             With this, DERRICK 2022 seeks to be flexible in following and responding
             to the very fast development pattern of the times in terms of energy transition. With the big theme
-            <strong>Riposting to Future Energy Challenges by Developing Human-Intellectual Centered on
+            <strong>"Riposting to Future Energy Challenges by Developing Human-Intellectual Centered on
                 Technological
                 Innovation”</strong>. This is manifested in the form of a competition which discusses the problems
             that exist in

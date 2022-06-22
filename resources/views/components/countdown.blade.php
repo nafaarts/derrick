@@ -19,7 +19,7 @@
                 <div class="uppercase text-xs md:text-sm">Seconds</div>
             </div>
         </div>
-        <h5 class="text-center mt-10">Riposting to Future Energy Challanges by Developing Human-Intellectual
+        <h5 class="text-center mt-10">"Riposting to Future Energy Challanges by Developing Human-Intellectual
             Centered
             on Technological Innovation"</h5>
     </div>
