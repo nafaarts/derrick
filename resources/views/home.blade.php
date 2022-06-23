@@ -103,7 +103,7 @@
                 class="text-2xl font-bold uppercase text-SECONDARY block mb-20 underline underline-offset-8 tracking-wide text-center">
                 Competition
             </h2>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <div class="flex flex-col md:flex-row flex-wrap justify-center">
                 @foreach ($competitions as $competition)
                     <a href="{{ route('competition.detail', $competition) }}" data-aos="fadein"
                         data-aos-delay="{{ $loop->iteration * 200 }}" class="w-full md:w-1/4">
