@@ -1,6 +1,6 @@
     <div class="py-1 border-b border-zinc-300 bg-PRIMARY">
         <div class="derrick-container flex justify-between text-gray-700">
-            <small class="font-light tracking-wide">www.derrick.com</small>
+            <small class="font-light tracking-wide">www.derrick.id</small>
             <div class="sosmed flex items-center">
                 @auth
                     <a class="bg-transparent md:mt-0 md:ml-4 text-xs border-r border-zinc-300 pr-2"
