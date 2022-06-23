@@ -106,7 +106,7 @@
             <div class="flex flex-col md:flex-row flex-wrap justify-center">
                 @foreach ($competitions as $competition)
                     <a href="{{ route('competition.detail', $competition) }}" data-aos="fadein"
-                        data-aos-delay="{{ $loop->iteration * 200 }}" class="w-full md:w-1/4">
+                        data-aos-delay="{{ $loop->iteration * 200 }}" class="w-full md:w-1/4 p-2">
                         <div class=" event-wrapper"
                             style="background-image: url('{{ asset('storage/competition/photo/' . $competition->photo) }}')">
                             <div class="event-content">
