@@ -56,7 +56,7 @@ class CompetitionController extends Controller
             'price_second_batch' => 'required|integer',
             'prize_pool' => 'required|integer',
             'max_member' => 'required|integer',
-            'guide_file' => 'required|mimes:pdf|max:5048',
+            'guide_file' => 'required|mimes:pdf|max:10048',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10048',
             'wa_link' => 'nullable'
         ]);
@@ -135,7 +135,7 @@ class CompetitionController extends Controller
             'price_second_batch' => 'required|integer',
             'prize_pool' => 'required|integer',
             'max_member' => 'required|integer',
-            'guide_file' => 'mimes:pdf|max:5048',
+            'guide_file' => 'mimes:pdf|max:10048',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:10048',
             'wa_link' => 'nullable'
         ]);
