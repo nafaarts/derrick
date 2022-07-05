@@ -175,15 +175,16 @@ class CompetitionRegisterController extends Controller
             $registrant = Registrant::where('registration_number', $registration_number)->first();
             if ($registrant) {
                 $params = env('DUITKU_MERCHANT_CODE') . $callback->amount . $callback->merchantOrderId . env('DUITKU_MERCHANT_KEY');
+                $transaction = Transaction::where('merchant_order_id', $callback->merchantOrderId)->first();
                 $calcSignature = md5($params);
                 if ($callback->signature == $calcSignature) {
                     if ($callback->resultCode == "00") {
-                        $registrant->update([
+                        $transaction->update([
                             'payment_code' => $callback->paymentCode,
                             'status_message' => 'SUCCESS',
                         ]);
                     } else if ($callback->resultCode == "01") {
-                        $registrant->update([
+                        $transaction->update([
                             'payment_code' => $callback->paymentCode,
                             'status_message' => 'FAILED',
                         ]);
@@ -197,6 +198,45 @@ class CompetitionRegisterController extends Controller
             }
         } catch (Exception $e) {
             http_response_code(400);
+            echo $e->getMessage();
+        }
+    }
+
+    public function checkTransactionStatus(Registrant $registrant)
+    {
+        // $transaction = Transaction::where('registrant_id', $registrant->id)->first();
+
+        try {
+            $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
+            $transactionList = Api::transactionStatus($registrant->merchantOrderId, $duitkuConfig);
+            header('Content-Type: application/json');
+            echo $transactionList;
+            // $transaction = json_decode($transactionList);
+            // dd($response, $transaction);
+            // if ($response->resultCode == '00' || $response->resultCode == '01') {
+            //     $registration_number = isset($transaction->merchantOrderId) ? explode('-', $transaction->merchantOrderId)[0] . '-' . explode('-', $transaction->merchantOrderId)[1] : null;
+            //     $registrant = Registrant::where('registration_number', $registration_number)->first();
+            //     if ($registrant) {
+            //         Transaction::create([
+            //             'registrant_id' => $registrant->id,
+            //             'merchant_order_id' => $transaction->merchantOrderId,
+            //             'reference' => $transaction->reference,
+            //             'status_code' => $transaction->statusCode,
+            //             'status_message' => $transaction->statusMessage ?? '',
+            //             'amount' => $transaction->amount,
+            //             'fee' => $transaction->fee,
+            //             'payment_code' => $transaction->paymentCode ?? null,
+            //             'result_code' => $transaction->resultCode ?? null,
+            //             'response' => request('callback'),
+            //             'registration_batch' => $registrant->competition->getRegistrationStatus(),
+            //         ]);
+
+            //         return redirect(route('competition.registered', $registrant->competition) . '?order_id=' . $response->merchantOrderId . '&transaction_status=' . $transaction->statusMessage);
+            //     }
+            // }
+
+            // return redirect()->route('registrant.competition');
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }

@@ -28,7 +28,6 @@
                 </div>
             </div>
             <hr class="border-TERTIARY my-5">
-            {{ $responseArray['reference'] }}
             <button id="pay-button"
                 class="py-2 px-6 bg-SECONDARY hover:bg-SECONDARY/80 rounded-md text-white w-full md:w-fit float-right"><i
                     class="fas fa-badge-check"></i> Pay Now</button>
@@ -61,12 +60,6 @@
         defer></script>
 
     </script>
-    {{-- <script>
-        window.jQuery || document.write(
-                `<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>`)
-    </script> --}}
 @endsection
 
 @section('scripts')
