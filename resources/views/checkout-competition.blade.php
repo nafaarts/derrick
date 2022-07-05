@@ -55,12 +55,18 @@
 @endsection
 
 @section('head')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
         src="{{ env('PAYMENT_IS_PRODUCTION') ? 'https://app-prod.duitku.com/lib/js/duitku.js' : 'https://app-sandbox.duitku.com/lib/js/duitku.js' }}"
         defer></script>
+
+    </script>
+    <script>
+        window.jQuery || document.write(
+                `<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>`)
+    </script>
 @endsection
 
 @section('scripts')
