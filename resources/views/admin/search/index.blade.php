@@ -153,8 +153,8 @@
                         <div class="flex items-center gap-2">
                             @if (in_array($current_transaction->status_message, ['SUCCESS', 'PROCESS']))
                                 <a class="py-1 px-2 bg-green-500 text-white rounded-md animate-pulse"
-                                    href="{{ route('checkout.check') }} "><i class="fas fa-fw fa-refresh"></i> check
-                                    transaction</a>
+                                    href="{{ route('checkout.check') . '?order_id=' . $current_transaction->merchant_order_id }} "><i
+                                        class="fas fa-fw fa-refresh"></i> check transaction</a>
                             @endif
                         </div>
                     @endif
