@@ -143,8 +143,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             return view('admin.dashboard.index', compact('competition', 'event', 'competition_registrant', 'event_registrant'));
         } else {
             $registers = Registrant::where('user_id', auth()->id())->first();
+
             if (!$registers->isPaid() && $registers->latestPayment() != null)
-                return redirect()->route('checkout.check') . '?order_id=' . $registers->latestPayment()->merchant_order_id . '&redirect=dashboard';
+                return redirect(route('checkout.check') . '?order_id=' . $registers->latestPayment()->merchant_order_id . '&redirect=dashboard');
 
             $alert = [];
             if ($registers) {
