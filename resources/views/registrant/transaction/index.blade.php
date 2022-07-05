@@ -15,7 +15,22 @@
         'registration_batch', --}}
 @section('body')
     <div class="bg-PRIMARY p-4 rounded-md w-full text-xs mb-4">
-        <h2>Transaction Details</h2>
+        <div class="flex items-center justify-between">
+            <h2>Transaction Details</h2>
+            @if (!$registrant->isPaid())
+                <div class="flex items-center gap-2">
+                    @if (!in_array($current_transaction->status_message, ['SUCCESS', 'PROCESS']))
+                        <a class="text-white bg-yellow-500 py-1 px-2 rounded-md"
+                            href="{{ route('competition.checkout') . '?reg=' . $registrant->registration_number }}"><i
+                                class="fas fa-fw fa-rotate"></i> retry
+                            checkout</a>
+                    @else
+                        <a class="py-1 px-2 bg-green-500 text-white rounded-md animate-pulse"
+                            href="{{ route('checkout.check') }} "><i class="fas fa-fw fa-refresh"></i> check transaction</a>
+                    @endif
+                </div>
+            @endif
+        </div>
         <hr class="my-3 border-TERTIARY">
         <table>
             <tr>
@@ -55,21 +70,6 @@
                     </td>
                 </tr>
             @endcan
-            @if (!$registrant->isPaid())
-                <tr>
-                    <td class="font-bold py-2 pt-10">
-                        <a class="text-SECONDARY hover:text-SECONDARY/80"
-                            href="{{ route('competition.checkout') . '?reg=' . $registrant->registration_number }}"><i
-                                class="fas fa-fw fa-rotate"></i> retry
-                            checkout</a>
-                    </td>
-                    <td class="font-bold py-2 pt-10">
-                        <a class="text-SECONDARY hover:text-SECONDARY/80"
-                            href="{{ route('checkout.check') . '?order_id=' . $current_transaction->merchant_order_id }}"><i
-                                class="fas fa-fw fa-refresh"></i> check transaction</a>
-                    </td>
-                </tr>
-            @endif
         </table>
     </div>
 

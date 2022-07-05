@@ -189,13 +189,14 @@ class CompetitionRegisterController extends Controller
                             'status_message' => 'FAILED',
                         ]);
                     }
-                    echo "SUCCESS"; // Mohon untuk memberikan respon success
+                    return "SUCCESS"; // Mohon untuk memberikan respon success
                 } else {
                     throw new Exception('Bad Signature');
                 }
             } else {
                 throw new Exception('Registrant not found');
             }
+            throw new Exception('SERVER ERROR');
         } catch (Exception $e) {
             http_response_code(400);
             echo $e->getMessage();
@@ -204,38 +205,21 @@ class CompetitionRegisterController extends Controller
 
     public function checkTransactionStatus()
     {
-        // $transaction = Transaction::where('registrant_id', $registrant->id)->first();
         if (!request()->has('order_id')) abort(400);
         try {
             $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
             $transactionList = Api::transactionStatus(request('order_id'), $duitkuConfig);
-            header('Content-Type: application/json');
-            echo $transactionList;
-            // $transaction = json_decode($transactionList);
-            // dd($response, $transaction);
-            // if ($response->resultCode == '00' || $response->resultCode == '01') {
-            //     $registration_number = isset($transaction->merchantOrderId) ? explode('-', $transaction->merchantOrderId)[0] . '-' . explode('-', $transaction->merchantOrderId)[1] : null;
-            //     $registrant = Registrant::where('registration_number', $registration_number)->first();
-            //     if ($registrant) {
-            //         Transaction::create([
-            //             'registrant_id' => $registrant->id,
-            //             'merchant_order_id' => $transaction->merchantOrderId,
-            //             'reference' => $transaction->reference,
-            //             'status_code' => $transaction->statusCode,
-            //             'status_message' => $transaction->statusMessage ?? '',
-            //             'amount' => $transaction->amount,
-            //             'fee' => $transaction->fee,
-            //             'payment_code' => $transaction->paymentCode ?? null,
-            //             'result_code' => $transaction->resultCode ?? null,
-            //             'response' => request('callback'),
-            //             'registration_batch' => $registrant->competition->getRegistrationStatus(),
-            //         ]);
+            // header('Content-Type: application/json');
+            // echo $transactionList;
+            // die;
+            $transaction = json_decode($transactionList);
+            $userTransaction = Transaction::where('merchant_order_id', $transaction->merchantOrderId)->first();
+            $userTransaction->update([
+                'payment_code' => $transaction->paymentCode ?? null,
+                'status_message' => $transaction->statusMessage,
+            ]);
 
-            //         return redirect(route('competition.registered', $registrant->competition) . '?order_id=' . $response->merchantOrderId . '&transaction_status=' . $transaction->statusMessage);
-            //     }
-            // }
-
-            // return redirect()->route('registrant.competition');
+            return redirect()->back();
         } catch (Exception $e) {
             echo $e->getMessage();
         }

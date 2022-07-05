@@ -107,22 +107,22 @@
                                     @if ($item->isPaid())
                                         <span class="text-green-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-check"></i>
-                                            {{ $item->latestPayment()->transaction_status ?? '' }}
+                                            {{ $item->latestPayment()->status_message ?? '' }}
                                         </span>
                                     @elseif($item->latestPayment() == null)
                                         <span class="text-yellow-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-info"></i>
                                             UNPAID
                                         </span>
-                                    @elseif(($item->latestPayment()->transaction_status ?? '') == 'pending')
+                                    @elseif(($item->latestPayment()->status_message ?? '') == 'PROCESS')
                                         <span class="text-yellow-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-hourglass"></i>
-                                            {{ $item->latestPayment()->transaction_status ?? '' }}
+                                            {{ $item->latestPayment()->status_message ?? '' }}
                                         </span>
                                     @else
                                         <span class="text-red-500 font-bold rounded-md">
                                             <i class="fas fa-fw fa-times"></i>
-                                            {{ $item->latestPayment()->transaction_status ?? '' }}
+                                            {{ $item->latestPayment()->status_message ?? '' }}
                                         </span>
                                     @endif
                                 </td>

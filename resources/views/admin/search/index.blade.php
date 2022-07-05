@@ -147,7 +147,18 @@
 
         @if ($registers->transactions->count() > 0)
             <div class="bg-PRIMARY p-4 rounded-md w-full text-xs mb-4">
-                <h2>Transaction Details</h2>
+                <div class="flex items-center justify-between">
+                    <h2>Transaction Details</h2>
+                    @if (!$registers->isPaid())
+                        <div class="flex items-center gap-2">
+                            @if (in_array($current_transaction->status_message, ['SUCCESS', 'PROCESS']))
+                                <a class="py-1 px-2 bg-green-500 text-white rounded-md animate-pulse"
+                                    href="{{ route('checkout.check') }} "><i class="fas fa-fw fa-refresh"></i> check
+                                    transaction</a>
+                            @endif
+                        </div>
+                    @endif
+                </div>
                 <hr class="my-3 border-TERTIARY">
                 <table>
                     <tr>
@@ -190,13 +201,12 @@
                     <h2>Transaction History</h2>
                     <hr class="my-3 border-TERTIARY">
                     <div class="overflow-x-auto mt-6 rounded-md overflow-hidden mb-3 text-xs">
-
                         <table class="table-auto border-collapse w-full">
                             <thead>
                                 <tr class="rounded-lg font-medium text-gray-700 text-left">
-                                    <th class="px-4 py-4 bg-TERTIARY whitespace-nowrap">Transaction ID</th>
-                                    <th class="px-4 py-4 bg-TERTIARY whitespace-nowrap">Status</th>
                                     <th class="px-4 py-4 bg-TERTIARY whitespace-nowrap">Type</th>
+                                    <th class="px-4 py-4 bg-TERTIARY whitespace-nowrap">Transaction ID</th>
+                                    <th class="px-4 py-4 bg-TERTIARY whitespace-nowrap">Order Id</th>
                                     <th class="px-4 py-4 bg-TERTIARY whitespace-nowrap">Amount</th>
                                     <th class="px-4 py-4 bg-TERTIARY whitespace-nowrap">Time</th>
                                 </tr>
@@ -205,16 +215,19 @@
                                 @foreach ($other_transaction as $transaction)
                                     <tr class="hover:bg-TERTIARY border-b border-TERTIARY py-5">
                                         <td class="px-4 py-4 whitespace-nowrap">
-                                            <p>{{ $transaction->transaction_id }}</p>
+                                            {{ $transaction->payment_code ?? '-' }}
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            <p>{{ $transaction->reference }}</p>
                                             <small>{{ $transaction->status_message }}</small>
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap font-bold uppercase">
-                                            {{ $transaction->transaction_status }}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            {{ $transaction->payment_type == 'cstore' ? 'Alfamart / Indomaret' : $transaction->payment_type }}
+                                            {{ $transaction->merchant_order_id }}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap">IDR
+                                            {{ number_format($transaction->amount) }}
                                         </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">{{ $transaction->gross_amount }}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">{{ $transaction->transaction_time }}
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            {{ $transaction->created_at->diffForHumans() }}
                                         </td>
                                     </tr>
                                 @endforeach

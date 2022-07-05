@@ -151,7 +151,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                         'You have not paid for your registration. Please pay your registration fee to continue.'
                     );
 
-                if (!$registers->user->profile_picture)
+                if (!$registers->user->profile_image)
                     array_push(
                         $alert,
                         'You have not uploaded your profile picture. Please upload your profile picture to continue.'

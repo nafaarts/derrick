@@ -52,22 +52,22 @@
                                 @if ($person->isPaid())
                                     <span class="px-2 py-1 text-green-500 font-bold rounded-md">
                                         <i class="fas fa-fw fa-check"></i>
-                                        {{ $person->latestPayment()->transaction_status ?? '' }}
+                                        {{ $person->latestPayment()->status_message ?? '' }}
                                     </span>
                                 @elseif($person->latestPayment() == null)
                                     <span class="px-2 py-1 text-yellow-500 font-bold rounded-md">
                                         <i class="fas fa-fw fa-info"></i>
                                         UNPAID
                                     </span>
-                                @elseif(($person->latestPayment()->transaction_status ?? '') == 'pending')
+                                @elseif(($person->latestPayment()->status_message ?? '') == 'PROCESS')
                                     <span class="px-2 py-1 text-yellow-500 font-bold rounded-md">
                                         <i class="fas fa-fw fa-hourglass"></i>
-                                        {{ $person->latestPayment()->transaction_status ?? '' }}
+                                        {{ $person->latestPayment()->status_message ?? '' }}
                                     </span>
                                 @else
                                     <span class="px-2 py-1 text-red-500 font-bold rounded-md">
                                         <i class="fas fa-fw fa-times"></i>
-                                        {{ $person->latestPayment()->transaction_status ?? '' }}
+                                        {{ $person->latestPayment()->status_message ?? '' }}
                                     </span>
                                 @endif
                             </td>
