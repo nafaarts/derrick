@@ -81,7 +81,7 @@ class CompetitionRegisterController extends Controller
         if ($registrant->isPaid()) return redirect()->route('registrant.competition');
 
         $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
-        $duitkuConfig->setSandboxMode(true);
+        $duitkuConfig->setSandboxMode(!env('PAYMENT_IS_PRODUCTION'));
 
         $nameExplode = explode(' ', $registrant->user->name);
 
@@ -92,7 +92,7 @@ class CompetitionRegisterController extends Controller
         );
 
         $params = array(
-            'paymentAmount'     => $registrant->competition->getCurrentPrice() + 10000,
+            'paymentAmount'     => $registrant->competition->getCurrentPrice() + 6000,
             'merchantOrderId'   => $registrant->registration_number . '-' . date('YmdHis'),
             'productDetails'    => $registrant->competition->name,
             'customerVaName'    => $registrant->user->name,
@@ -103,8 +103,8 @@ class CompetitionRegisterController extends Controller
                     'price'     => $registrant->competition->getCurrentPrice(),
                     'quantity'  => 1
                 ], [
-                    'name'      => 'Derrick',
-                    'price'     => 10000,
+                    'name'      => 'Admin Fee',
+                    'price'     => 6000,
                     'quantity'  => 1
                 ]
             ),
@@ -130,6 +130,8 @@ class CompetitionRegisterController extends Controller
         $response = json_decode(request('callback'));
         try {
             $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
+            $duitkuConfig->setSandboxMode(!env('PAYMENT_IS_PRODUCTION'));
+
             $transactionList = Api::transactionStatus($response->merchantOrderId, $duitkuConfig);
             // header('Content-Type: application/json');
             $transaction = json_decode($transactionList);
@@ -166,6 +168,8 @@ class CompetitionRegisterController extends Controller
     {
         try {
             $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
+            $duitkuConfig->setSandboxMode(!env('PAYMENT_IS_PRODUCTION'));
+
             $callback = Pop::callback($duitkuConfig);
             // header('Content-Type: application/json');
             // $notif = json_decode($callback, true);
@@ -208,6 +212,8 @@ class CompetitionRegisterController extends Controller
         if (!request()->has('order_id')) abort(400);
         try {
             $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
+            $duitkuConfig->setSandboxMode(!env('PAYMENT_IS_PRODUCTION'));
+
             $transactionList = Api::transactionStatus(request('order_id'), $duitkuConfig);
             // header('Content-Type: application/json');
             // echo $transactionList;
