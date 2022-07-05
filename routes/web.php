@@ -144,16 +144,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         } else {
             $registers = Registrant::where('user_id', auth()->id())->first();
 
-            if (!$registers->isPaid() && $registers->latestPayment() != null)
-                return redirect(route('checkout.check') . '?order_id=' . $registers->latestPayment()->merchant_order_id . '&redirect=dashboard');
-
             $alert = [];
             if ($registers) {
-                if (!$registers->isPaid())
+                if (!$registers->isPaid()) {
                     array_push(
                         $alert,
                         'You have not paid for your registration. Please pay your registration fee to continue.'
                     );
+                }
 
                 if (!$registers->user->profile_image)
                     array_push(
