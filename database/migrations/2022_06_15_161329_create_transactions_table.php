@@ -16,17 +16,17 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('registrant_id')->constrained('registrants')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('transaction_id');
-            $table->string('order_id');
+            $table->string('merchant_order_id');
+            $table->string('reference');
             $table->string('status_code');
             $table->string('status_message');
-            $table->string('gross_amount');
-            $table->string('payment_type');
-            $table->string('transaction_time');
-            $table->string('transaction_status');
-            $table->string('fraud_status')->nullable();
-            $table->string('pdf_url')->nullable();
-            $table->json('response');
+            $table->string('amount');
+            $table->string('fee');
+            $table->string('payment_code')->nullable();
+            $table->string('result_code')->nullable();
+            $table->json('response')->nullable();
+            $table->json('notification')->nullable();
+            $table->string('registration_batch')->nullable();
             $table->timestamps();
         });
     }

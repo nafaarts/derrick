@@ -11,21 +11,17 @@ class Transaction extends Model
 
     protected $fillable = [
         'registrant_id',
-        'transaction_id',
-        'order_id',
+        'merchant_order_id',
+        'reference',
         'status_code',
         'status_message',
-        'gross_amount',
-        'payment_type',
-        'transaction_time',
-        'transaction_status',
-        'fraud_status',
-        'pdf_url',
-        'settlement_time',
+        'amount',
+        'fee',
+        'payment_code',
+        'result_code',
         'response',
         'notification',
         'registration_batch',
-        'registration_price',
     ];
 
     public function registrant()

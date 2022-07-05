@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a721026e373a575411f91dde4262d341",
+    "content-hash": "3d67b76e644d33243fd9e60a792c7821",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1017,6 +1017,47 @@
                 }
             ],
             "time": "2022-01-18T15:43:28+00:00"
+        },
+        {
+            "name": "duitkupg/duitku-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/duitkupg/duitku-php.git",
+                "reference": "994f9eb9ebdd21fe342f4ef6b5b6c73aea41db9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/duitkupg/duitku-php/zipball/994f9eb9ebdd21fe342f4ef6b5b6c73aea41db9d",
+                "reference": "994f9eb9ebdd21fe342f4ef6b5b6c73aea41db9d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Duitku\\": "Duitku/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Duitku PHP",
+            "homepage": "https://duitku.com",
+            "support": {
+                "issues": "https://github.com/duitkupg/duitku-php/issues",
+                "source": "https://github.com/duitkupg/duitku-php/tree/master"
+            },
+            "time": "2022-02-10T03:23:47+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -2690,61 +2731,6 @@
                 "source": "https://github.com/MarkBaker/PHPMatrix/tree/3.0.0"
             },
             "time": "2021-07-01T19:01:15+00:00"
-        },
-        {
-            "name": "midtrans/midtrans-php",
-            "version": "2.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Midtrans/midtrans-php.git",
-                "reference": "a1ad0c824449ca8c68c4cf11b3417ad518311d2b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Midtrans/midtrans-php/zipball/a1ad0c824449ca8c68c4cf11b3417ad518311d2b",
-                "reference": "a1ad0c824449ca8c68c4cf11b3417ad518311d2b",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "5.7.*",
-                "psy/psysh": "0.4.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Midtrans\\": "Midtrans/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andri Setiawan",
-                    "email": "andri.setiawan@veritrans.co.id"
-                },
-                {
-                    "name": "Alvin Litani",
-                    "email": "alvin.litani@veritrans.co.id"
-                },
-                {
-                    "name": "Ismail Faruqi",
-                    "email": "ismail.faruqi@veritrans.co.id"
-                }
-            ],
-            "description": "PHP Wrapper for Midtrans Payment API.",
-            "homepage": "https://midtrans.com",
-            "support": {
-                "issues": "https://github.com/Midtrans/midtrans-php/issues",
-                "source": "https://github.com/Midtrans/midtrans-php/tree/2.5.2"
-            },
-            "time": "2021-08-23T08:52:05+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -9303,12 +9289,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "duitkupg/duitku-php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

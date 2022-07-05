@@ -88,8 +88,8 @@ Route::group(['prefix' => 'competition'], function () {
 
     Route::get('/{competition:slug}/thank-you', function (Competition $competition) {
         $message = "";
-        if (in_array(request()->transaction_status, ['settlement', 'pending'])) {
-            $message = request()->transaction_status == 'settlement' ? 'Your payment has been successfully processed.' : 'Your payment is being processed.';
+        if (in_array(request()->transaction_status, ['SUCCESS', 'PROCESS'])) {
+            $message = request()->transaction_status == 'SUCCESS' ? 'Your payment has been successfully processed.' : 'Your payment is being processed.';
         }
 
         $name = $competition->name;

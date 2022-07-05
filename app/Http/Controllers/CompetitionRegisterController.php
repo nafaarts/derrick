@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Competition;
 use App\Models\Registrant;
 use App\Models\Transaction;
+use Duitku\Api;
 use Illuminate\Http\Request;
-use Midtrans\Config;
+use Duitku\Config;
+use Duitku\Pop;
+use Exception;
 
 class CompetitionRegisterController extends Controller
 {
@@ -77,123 +80,124 @@ class CompetitionRegisterController extends Controller
         if (!$registrant || $registrant->user_id != auth()->id()) abort(404);
         if ($registrant->isPaid()) return redirect()->route('registrant.competition');
 
-        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
+        $duitkuConfig->setSandboxMode(true);
+
+        $nameExplode = explode(' ', $registrant->user->name);
+
+        $customerDetail = array(
+            'firstName'         => $nameExplode[0],
+            'lastName'          => $nameExplode[1] ?? '',
+            'email'             => $registrant->user->email,
+        );
 
         $params = array(
-            'transaction_details' => array(
-                'order_id' => $registrant->registration_number . '-' . date('YmdHis'),
-                'gross_amount' => $registrant->competition->getCurrentPrice() + 6000,
+            'paymentAmount'     => $registrant->competition->getCurrentPrice() + 10000,
+            'merchantOrderId'   => $registrant->registration_number . '-' . date('YmdHis'),
+            'productDetails'    => $registrant->competition->name,
+            'customerVaName'    => $registrant->user->name,
+            'email'             => $registrant->user->email,
+            'itemDetails'       => array(
+                [
+                    'name'      => $registrant->competition->name,
+                    'price'     => $registrant->competition->getCurrentPrice(),
+                    'quantity'  => 1
+                ], [
+                    'name'      => 'Derrick',
+                    'price'     => 10000,
+                    'quantity'  => 1
+                ]
             ),
-            'item_details' => array([
-                'id' => $registrant->competition->id,
-                'price' => $registrant->competition->getCurrentPrice() + 6000,
-                'quantity' => 1,
-                'name' => $registrant->competition->name,
-            ]),
-            'customer_details' => array(
-                'first_name' => $registrant->user->name,
-                'last_name' => '',
-                'email' => $registrant->user->email,
-                'phone' => $registrant->phone_number,
-            ),
+            'customerDetail'    => $customerDetail,
+            'callbackUrl'       => 'https://derrick.id/callback', // url for callback,
+            'returnUrl'         => 'https://derrick.id/return', // url for redirect,
+            'expiryPeriod'      => 60, // set the expired time in minutes
         );
 
         try {
-            $snapToken = \Midtrans\Snap::getSnapToken($params);
-        } catch (\Throwable $th) {
-            return $th;
+            $responseDuitkuPop = Pop::createInvoice($params, $duitkuConfig);
+            // header('Content-Type: application/json');
+            // echo $responseDuitkuPop;
+            $responseArray = json_decode($responseDuitkuPop, true);
+            return view('checkout-competition', compact('registrant', 'responseDuitkuPop', 'responseArray'));
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
-
-        return view('checkout-competition', compact('registrant', 'snapToken'));
     }
 
     public function callback()
     {
         $response = json_decode(request('callback'));
-        if ($response->status_code == '200' || $response->status_code == '201') {
-            $registration_number = isset($response->order_id) ? explode('-', $response->order_id)[0] . '-' . explode('-', $response->order_id)[1] : null;
-            $registrant = Registrant::where('registration_number', $registration_number)->first();
-            if ($registrant) {
-                Transaction::create([
-                    'registrant_id' => $registrant->id,
-                    'transaction_id' => $response->transaction_id,
-                    'order_id' => $response->order_id,
-                    'status_code' => $response->status_code,
-                    'status_message' => $response->status_message,
-                    'gross_amount' => $response->gross_amount,
-                    'payment_type' => $response->payment_type,
-                    'transaction_time' => $response->transaction_time,
-                    'transaction_status' => $response->transaction_status,
-                    'fraud_status' => isset($response->fraud_status) ? $response->fraud_status : null,
-                    'pdf_url' => isset($response->pdf_url) ? $response->pdf_url : null,
-                    'response' => request('callback'),
-                    'registration_batch' => $registrant->competition->getRegistrationStatus(),
-                    'registration_price' => $registrant->competition->getCurrentPrice(),
-                ]);
+        try {
+            $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
+            $transactionList = Api::transactionStatus($response->merchantOrderId, $duitkuConfig);
+            // header('Content-Type: application/json');
+            $transaction = json_decode($transactionList);
+            // dd($response, $transaction);
+            if ($response->resultCode == '00' || $response->resultCode == '01') {
+                $registration_number = isset($transaction->merchantOrderId) ? explode('-', $transaction->merchantOrderId)[0] . '-' . explode('-', $transaction->merchantOrderId)[1] : null;
+                $registrant = Registrant::where('registration_number', $registration_number)->first();
+                if ($registrant) {
+                    Transaction::create([
+                        'registrant_id' => $registrant->id,
+                        'merchant_order_id' => $transaction->merchantOrderId,
+                        'reference' => $transaction->reference,
+                        'status_code' => $transaction->statusCode,
+                        'status_message' => $transaction->statusMessage ?? '',
+                        'amount' => $transaction->amount,
+                        'fee' => $transaction->fee,
+                        'payment_code' => $transaction->paymentCode ?? null,
+                        'result_code' => $transaction->resultCode ?? null,
+                        'response' => request('callback'),
+                        'registration_batch' => $registrant->competition->getRegistrationStatus(),
+                    ]);
 
-                //return to thank you page
-                return redirect(route('competition.registered', $registrant->competition) . '?order_id=' . $response->order_id . '&transaction_status=' . $response->transaction_status);
+                    return redirect(route('competition.registered', $registrant->competition) . '?order_id=' . $response->merchantOrderId . '&transaction_status=' . $transaction->statusMessage);
+                }
             }
-        }
 
-        // return to registrant transaction page
-        return redirect()->route('registrant.competition');
+            return redirect()->route('registrant.competition');
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function notification()
     {
-        \Midtrans\Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
-        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        $notif = new \Midtrans\Notification();
+        try {
+            $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
+            $callback = Pop::callback($duitkuConfig);
+            // header('Content-Type: application/json');
+            // $notif = json_decode($callback, true);
 
-        $transaction = $notif->transaction_status;
-        $type = $notif->payment_type;
-        $order_id = $notif->order_id;
-        $fraud = $notif->fraud_status;
-
-        if ($transaction == 'capture') {
-            // For credit card transaction, we need to check whether transaction is challenge by FDS or not
-            if ($type == 'credit_card') {
-                if ($fraud == 'challenge') {
-                    // TODO set payment status in merchant's database to 'Challenge by FDS'
-                    // TODO merchant should decide whether this transaction is authorized or not in MAP
-                    $message = "Transaction order_id: " . $order_id . " is challenged by FDS";
+            // var_dump($callback);
+            $registration_number = isset($callback->merchantOrderId) ? explode('-', $callback->merchantOrderId)[0] . '-' . explode('-', $callback->merchantOrderId)[1] : null;
+            $registrant = Registrant::where('registration_number', $registration_number)->first();
+            if ($registrant) {
+                $params = env('DUITKU_MERCHANT_CODE') . $callback->amount . $callback->merchantOrderId . env('DUITKU_MERCHANT_KEY');
+                $calcSignature = md5($params);
+                if ($callback->signature == $calcSignature) {
+                    if ($callback->resultCode == "00") {
+                        $registrant->update([
+                            'payment_code' => $callback->paymentCode,
+                            'status_message' => 'SUCCESS',
+                        ]);
+                    } else if ($callback->resultCode == "01") {
+                        $registrant->update([
+                            'payment_code' => $callback->paymentCode,
+                            'status_message' => 'FAILED',
+                        ]);
+                    }
+                    echo "SUCCESS"; // Mohon untuk memberikan respon success
                 } else {
-                    // TODO set payment status in merchant's database to 'Success'
-                    $message = "Transaction order_id: " . $order_id . " successfully captured using " . $type;
+                    throw new Exception('Bad Signature');
                 }
+            } else {
+                throw new Exception('Registrant not found');
             }
-        } else if ($transaction == 'settlement') {
-            // TODO set payment status in merchant's database to 'Settlement'
-            $message = "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
-        } else if ($transaction == 'pending') {
-            // TODO set payment status in merchant's database to 'Pending'
-            $message = "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
-        } else if ($transaction == 'deny') {
-            // TODO set payment status in merchant's database to 'Denied'
-            $message = "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
-        } else if ($transaction == 'expire') {
-            // TODO set payment status in merchant's database to 'expire'
-            $message = "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
-        } else if ($transaction == 'cancel') {
-            // TODO set payment status in merchant's database to 'Denied'
-            $message = "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
+        } catch (Exception $e) {
+            http_response_code(400);
+            echo $e->getMessage();
         }
-
-        $local = Transaction::where('order_id', $order_id)->first();
-        $local->update([
-            'transaction_status' => $transaction,
-            'status_message' => $message,
-            'fraud_status' => $fraud ?? null,
-            'settlement_time' => $notif->settlement_time ?? null,
-            'notification' => request()->getContent(),
-        ]);
-
-        return response()->json([
-            'status' => 'success',
-        ], 200);
     }
 }

@@ -4,7 +4,6 @@
 
 @section('body')
     @include('components.label', ['label' => 'Checkout'])
-
     <div class="derrick-container flex flex-col md:flex-row gap-5 p-5">
         <div class="w-full md:w-2/3 p-3">
             <h5 class="text-base mb-2 font-light tracking-wide">#{{ $registrant->registration_number }}</h5>
@@ -29,6 +28,7 @@
                 </div>
             </div>
             <hr class="border-TERTIARY my-5">
+            {{ $responseArray['reference'] }}
             <button id="pay-button"
                 class="py-2 px-6 bg-SECONDARY hover:bg-SECONDARY/80 rounded-md text-white w-full md:w-fit float-right"><i
                     class="fas fa-badge-check"></i> Pay Now</button>
@@ -55,21 +55,29 @@
 @endsection
 
 @section('head')
-    <script type="text/javascript"
-        src="{{ env('MIDTRANS_IS_PRODUCTION') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}"
-        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    <script
+        src="{{ env('PAYMENT_IS_PRODUCTION') ? 'https://app-prod.duitku.com/lib/js/duitku.js' : 'https://app-sandbox.duitku.com/lib/js/duitku.js' }}"
+        defer></script>
 @endsection
 
 @section('scripts')
     <script type="text/javascript">
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function() {
-            window.snap.pay('{{ $snapToken }}', {
-                onSuccess: (result) => send_data(result),
-                onPending: (result) => send_data(result),
-                onError: (result) => send_data(result),
-                onClose: () => alert('you closed the popup without finishing the payment')
-            })
+            checkout.process("{{ $responseArray['reference'] }}", {
+                successEvent: function(result) {
+                    send_data(result);
+                },
+                pendingEvent: function(result) {
+                    send_data(result);
+                },
+                errorEvent: function(result) {
+                    alert('Payment Error');
+                },
+                closeEvent: function(result) {
+                    alert('you closed the popup without finishing the payment');
+                }
+            });
         });
 
         function send_data(result) {
@@ -77,4 +85,5 @@
             document.getElementById('callback-form').submit();
         }
     </script>
+
 @endsection

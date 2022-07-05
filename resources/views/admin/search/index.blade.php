@@ -152,25 +152,17 @@
                 <table>
                     <tr>
                         <td class="py-2">Transaction ID</td>
-                        <td class="font-bold py-2 pl-12">{{ $current_transaction->transaction_id }}</td>
+                        <td class="font-bold py-2 pl-12">{{ $current_transaction->reference }}</td>
                     </tr>
                     <tr>
                         <td class="py-2">Order ID</td>
-                        <td class="font-bold py-2 pl-12">{{ $current_transaction->order_id }}</td>
+                        <td class="font-bold py-2 pl-12">{{ $current_transaction->merchant_order_id }}</td>
                     </tr>
                     <tr>
                         <td class="py-2">Payment Type</td>
                         <td class="font-bold py-2 pl-12 uppercase">
-                            {{ $current_transaction->payment_type == 'cstore' ? 'Alfamart / Indomaret' : $current_transaction->payment_type }}
+                            {{ $current_transaction->payment_code ?? '-' }}
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Transaction Time</td>
-                        <td class="font-bold py-2 pl-12">{{ $current_transaction->transaction_time }}</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Transaction Status</td>
-                        <td class="font-bold py-2 pl-12 uppercase">{{ $current_transaction->transaction_status }}</td>
                     </tr>
                     <tr>
                         <td class="py-2">Message</td>
@@ -178,20 +170,18 @@
                     </tr>
                     <tr>
                         <td class="py-2">Pay Amount</td>
-                        <td class="font-bold py-2 pl-12">IDR {{ number_format($current_transaction->gross_amount) }}
-                        </td>
+                        <td class="font-bold py-2 pl-12">IDR {{ number_format($current_transaction->amount) }}</td>
                     </tr>
-                    @if ($current_transaction->pdf_url)
+                    @can('isAdmin')
                         <tr>
-                            <td class="py-2">Transaction Guide</td>
-                            <td class="font-bold py-2 pl-12">
-                                <a href="{{ $current_transaction->pdf_url }}" target="_blank"
-                                    class="text-SECONDARY hover:text-SECONDARY/80">
-                                    download <i class="fas fa-fw fa-link"></i>
-                                </a>
+                            <td class="py-2">Response</td>
+                            <td class="text-xs font-light italic py-2 pl-12">
+                                <code>
+                                    {{ $current_transaction->response }}
+                                </code>
                             </td>
                         </tr>
-                    @endif
+                    @endcan
                 </table>
             </div>
 
