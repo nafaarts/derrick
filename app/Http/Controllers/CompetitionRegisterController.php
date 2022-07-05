@@ -109,7 +109,7 @@ class CompetitionRegisterController extends Controller
                 ]
             ),
             'customerDetail'    => $customerDetail,
-            'callbackUrl'       => 'https://derrick.id/callback', // url for callback,
+            'callbackUrl'       => 'https://derrick.id/api/notification', // url for callback,
             'returnUrl'         => 'https://derrick.id/return', // url for redirect,
             'expiryPeriod'      => 60, // set the expired time in minutes
         );
