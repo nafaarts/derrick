@@ -100,6 +100,7 @@ Route::group(['prefix' => 'competition'], function () {
 
 Route::get('/checkout', [CompetitionRegisterController::class, 'checkout'])->name('competition.checkout')->middleware(['auth', 'verified']);
 Route::post('/checkout', [CompetitionRegisterController::class, 'callback'])->name('checkout.callback')->middleware(['auth', 'verified']);
+Route::get('/check-transaction', [CompetitionRegisterController::class, 'checkTransactionStatus'])->name('checkout.check')->middleware(['auth', 'verified']);;
 
 Route::get('/information', function () {
     $blogs = Blog::where('status', 'published')->latest()->get();

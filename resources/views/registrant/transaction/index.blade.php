@@ -57,11 +57,16 @@
             @endcan
             @if (!$registrant->isPaid())
                 <tr>
-                    <td rowspan="2" class="font-bold py-2 pt-10">
+                    <td class="font-bold py-2 pt-10">
                         <a class="text-SECONDARY hover:text-SECONDARY/80"
                             href="{{ route('competition.checkout') . '?reg=' . $registrant->registration_number }}"><i
                                 class="fas fa-fw fa-rotate"></i> retry
                             checkout</a>
+                    </td>
+                    <td class="font-bold py-2 pt-10">
+                        <a class="text-SECONDARY hover:text-SECONDARY/80"
+                            href="{{ route('checkout.check') . '?order_id=' . $current_transaction->merchant_order_id }}"><i
+                                class="fas fa-fw fa-refresh"></i> check transaction</a>
                     </td>
                 </tr>
             @endif

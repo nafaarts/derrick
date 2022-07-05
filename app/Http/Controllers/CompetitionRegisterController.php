@@ -202,13 +202,13 @@ class CompetitionRegisterController extends Controller
         }
     }
 
-    public function checkTransactionStatus(Registrant $registrant)
+    public function checkTransactionStatus()
     {
         // $transaction = Transaction::where('registrant_id', $registrant->id)->first();
-
+        if (!request()->has('order_id')) abort(400);
         try {
             $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
-            $transactionList = Api::transactionStatus($registrant->merchantOrderId, $duitkuConfig);
+            $transactionList = Api::transactionStatus(request('order_id'), $duitkuConfig);
             header('Content-Type: application/json');
             echo $transactionList;
             // $transaction = json_decode($transactionList);
