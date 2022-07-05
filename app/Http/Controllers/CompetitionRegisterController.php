@@ -219,7 +219,7 @@ class CompetitionRegisterController extends Controller
                 'status_message' => $transaction->statusMessage,
             ]);
 
-            return redirect()->back();
+            return request('redirect') ? redirect(request('redirect')) : redirect()->back();
         } catch (Exception $e) {
             echo $e->getMessage();
         }
