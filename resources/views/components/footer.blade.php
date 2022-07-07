@@ -37,6 +37,7 @@
         </div>
     </div>
     <div class="bg-TERTIARY py-5 text-center">
-        <small>Copyright &copy; Derrick {{ date('Y') }}</small>
+        <small>Copyright &copy; Derrick {{ date('Y') }} | powered by <a class="hover:text-orange-400"
+                href="https://nafaarts.com">Nafaarts</a></small>
     </div>
 </footer>
