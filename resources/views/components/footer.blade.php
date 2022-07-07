@@ -15,6 +15,8 @@
                 <p>
                     {{-- <i class="fas fa-fw fa-envelope mr-2"></i> --}}
                     <a href="mailto:derrickeksplorasiproduksi@gmail.com">derrickeksplorasiproduksi@gmail.com</a>
+                    <a href="tel:6282228003174">+62 822-2800-3174 (Prasetyo)</a>
+                    <a href="tel:6282144684165">+62 821-4468-4165 (Sabrina)</a>
                 </p>
             </div>
             <div class="w-full md:w-1/4">
