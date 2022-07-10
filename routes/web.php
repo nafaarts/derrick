@@ -220,3 +220,7 @@ Auth::routes([
     'reset' => true,
     'verify' => true,
 ]);
+
+Route::get('/twibbonize', function () {
+    return view('twibbonize');
+})->name('twibbonize');
