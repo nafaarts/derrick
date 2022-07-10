@@ -57,7 +57,7 @@
                         href="{{ route('sponsors') }}">SPONSORS</a>
                     <a class="px-4 py-2 mt-2 text-sm bg-transparent hover:md:pb-1 hover:md:border-b-2 border-SECONDARY md:mt-0 md:ml-4 {{ Request::is('about-us') ? 'font-bold text-DARKER md:border-b-2 pb-1' : 'text-gray-500' }}"
                         href="{{ route('about') }}">ABOUT US</a>
-                    <a class="px-4 py-2 mt-2 text-sm bg-transparent hover:md:pb-1 hover:md:border-b-2 border-SECONDARY md:mt-0 md:ml-4 {{ Request::is('about-us') ? 'font-bold text-DARKER md:border-b-2 pb-1' : 'text-gray-500' }}"
+                    <a class="px-4 py-2 mt-2 text-sm bg-transparent hover:md:pb-1 hover:md:border-b-2 border-SECONDARY md:mt-0 md:ml-4 {{ Request::is('twibbonize') ? 'font-bold text-DARKER md:border-b-2 pb-1' : 'text-gray-500' }}"
                         href="{{ route('twibbonize') }}">TWIBBONIZE
                         <span
                             class="bg-green-100 text-green-800 text-xs font-semibold mr-2 animate-pulse px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">New</span></a>
