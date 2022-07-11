@@ -56,11 +56,17 @@
                 <td class="py-2">Pay Amount</td>
                 <td class="font-bold py-2 pl-12">IDR {{ number_format($current_transaction->amount) }}</td>
             </tr>
-
+            {{-- getExpiredTime --}}
             <tr>
                 <td class="py-2">Updated At</td>
                 <td class="font-bold py-2 pl-12">{{ $current_transaction->updated_at->diffForHumans() }}</td>
             </tr>
+            @if (!$registrant->isPaid())
+                <tr>
+                    <td class="py-2">Expired At</td>
+                    <td class="font-bold py-2 pl-12">{{ $current_transaction->getExpiredTime() }}</td>
+                </tr>
+            @endif
             @can('isAdmin')
                 <tr>
                     <td class="py-2">Response</td>

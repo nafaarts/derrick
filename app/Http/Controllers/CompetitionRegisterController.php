@@ -166,44 +166,47 @@ class CompetitionRegisterController extends Controller
 
     public function notification()
     {
-        try {
-            $duitkuConfig = new Config(env('DUITKU_MERCHANT_KEY'), env('DUITKU_MERCHANT_CODE'));
-            $duitkuConfig->setSandboxMode(!env('PAYMENT_IS_PRODUCTION'));
+        $apiKey = env('DUITKU_MERCHANT_KEY'); // API key anda
+        $merchantCode = isset($_POST['merchantCode']) ? $_POST['merchantCode'] : null;
+        $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
+        $merchantOrderId = isset($_POST['merchantOrderId']) ? $_POST['merchantOrderId'] : null;
+        $productDetail = isset($_POST['productDetail']) ? $_POST['productDetail'] : null;
+        $additionalParam = isset($_POST['additionalParam']) ? $_POST['additionalParam'] : null;
+        $paymentCode = isset($_POST['paymentCode']) ? $_POST['paymentCode'] : null;
+        $resultCode = isset($_POST['resultCode']) ? $_POST['resultCode'] : null;
+        $merchantUserId = isset($_POST['merchantUserId']) ? $_POST['merchantUserId'] : null;
+        $reference = isset($_POST['reference']) ? $_POST['reference'] : null;
+        $signature = isset($_POST['signature']) ? $_POST['signature'] : null;
 
-            $callback = Pop::callback($duitkuConfig);
-            // header('Content-Type: application/json');
-            // $notif = json_decode($callback, true);
+        //log callback untuk debug
+        file_put_contents('callback.txt', "* Callback *\r\n", FILE_APPEND | LOCK_EX);
 
-            // var_dump($callback);
-            $registration_number = isset($callback->merchantOrderId) ? explode('-', $callback->merchantOrderId)[0] . '-' . explode('-', $callback->merchantOrderId)[1] : null;
-            $registrant = Registrant::where('registration_number', $registration_number)->first();
-            if ($registrant) {
-                $params = env('DUITKU_MERCHANT_CODE') . $callback->amount . $callback->merchantOrderId . env('DUITKU_MERCHANT_KEY');
-                $transaction = Transaction::where('merchant_order_id', $callback->merchantOrderId)->first();
-                $calcSignature = md5($params);
-                if ($callback->signature == $calcSignature) {
-                    if ($callback->resultCode == "00") {
-                        $transaction->update([
-                            'payment_code' => $callback->paymentCode,
-                            'status_message' => 'SUCCESS',
-                        ]);
-                    } else if ($callback->resultCode == "01") {
-                        $transaction->update([
-                            'payment_code' => $callback->paymentCode,
-                            'status_message' => 'FAILED',
-                        ]);
-                    }
-                    return "SUCCESS"; // Mohon untuk memberikan respon success
-                } else {
-                    throw new Exception('Bad Signature');
+        if (!empty($merchantCode) && !empty($amount) && !empty($merchantOrderId) && !empty($signature)) {
+            $params = $merchantCode . $amount . $merchantOrderId . $apiKey;
+            $calcSignature = md5($params);
+
+            if ($signature == $calcSignature) {
+                $transaction = Transaction::where('merchant_order_id', $merchantOrderId)->first();
+                if ($resultCode == "00") {
+                    $transaction->update([
+                        'payment_code' => $paymentCode,
+                        'status_message' => 'SUCCESS',
+                    ]);
+                } else if ($resultCode == "01") {
+                    $transaction->update([
+                        'payment_code' => $paymentCode,
+                        'status_message' => 'FAILED',
+                    ]);
                 }
+                file_put_contents('callback.txt', "* Berhasil *\r\n\r\n", FILE_APPEND | LOCK_EX);
+                echo "SUCCESS"; // Mohon untuk memberikan respon success
             } else {
-                throw new Exception('Registrant not found');
+                file_put_contents('callback.txt', "* Bad Signature *\r\n\r\n", FILE_APPEND | LOCK_EX);
+                throw new Exception('Bad Signature');
             }
-            throw new Exception('SERVER ERROR');
-        } catch (Exception $e) {
-            http_response_code(400);
-            echo $e->getMessage();
+        } else {
+            file_put_contents('callback.txt', "* Bad Parameter *\r\n\r\n", FILE_APPEND | LOCK_EX);
+            throw new Exception('Bad Parameter');
         }
     }
 

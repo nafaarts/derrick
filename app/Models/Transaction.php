@@ -28,4 +28,10 @@ class Transaction extends Model
     {
         return $this->belongsTo(Registrant::class);
     }
+
+    public function getExpiredTime()
+    {
+        // date("Y-m-d H:i:s", strtotime("2022-07-11 19:00:56") + 3600)
+        return $this->created_at->addMinutes(60);
+    }
 }
