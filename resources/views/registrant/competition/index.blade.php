@@ -15,7 +15,7 @@
                 <div class="flex flex-col-reverse justify-start items-start md:flex-row md:justify-between md:items-center">
                     <p class="text-gray-500 my-2">REG NO <strong>#{{ $registers->registration_number }}</strong></p>
                     <div class="flex gap-2">
-                        @if ($registers->isPaid())
+                        @if (!$registers->isPaid())
                             <a href="{{ route('registrant.transaction') }}"
                                 class="text-SECONDARY hover:text-SECONDARY/80 animate-pulse">
                                 <i class="fas fa-fw fa-refresh"></i>
