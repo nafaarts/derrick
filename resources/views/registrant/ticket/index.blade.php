@@ -85,19 +85,19 @@
                 <div style="margin-top: 20px">
                     <small>TYPE & PRICE</small>
                     <p>{{ $latest_transaction->registration_batch }} - IDR
-                        {{ number_format($latest_transaction->registration_price) }}</p>
+                        {{ number_format($latest_transaction->amount) }}</p>
                 </div>
             </td>
             <td>
                 <div>
                     <div>
                         <small>ORDER NO</small>
-                        <p>{{ $latest_transaction->order_id }}</p>
+                        <p>{{ $latest_transaction->merchant_order_id }}</p>
                     </div>
                     <div style="margin-top: 20px">
                         <small>PAYMENT STATUS</small>
-                        <p class="uppercase">{{ $latest_transaction->transaction_status }} /
-                            {{ $latest_transaction->payment_type }}
+                        <p class="uppercase">{{ $latest_transaction->status_message }} /
+                            {{ $latest_transaction->payment_code }}
                         </p>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
             </td>
             <td>
                 <small>ORDER DATE</small>
-                <p>{{ date('F d, Y', strtotime($latest_transaction->transaction_time)) }}</p>
+                <p>{{ date('F d, Y', strtotime($latest_transaction->updated_at)) }}</p>
             </td>
 
             <td style="text-align: right">
