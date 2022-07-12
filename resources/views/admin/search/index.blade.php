@@ -172,7 +172,7 @@
                     <tr>
                         <td class="py-2">Payment Type</td>
                         <td class="font-bold py-2 pl-12 uppercase">
-                            {{ $current_transaction->payment_code ?? '-' }}
+                            {{ $current_transaction->payment_code ? getPaymentCode($current_transaction->payment_code) : '-' }}
                         </td>
                     </tr>
                     <tr>

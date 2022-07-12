@@ -39,3 +39,34 @@ function explode_date($date)
     $date = explode(' ', \Carbon\Carbon::parse($date)->format('d F Y'));
     return $date;
 }
+
+function getPaymentCode($code)
+{
+    $data = [
+        "VC" => "(Visa / Master Card / JCB) Virtual Account",
+        "BC" => "BCA Virtual Account",
+        "M2" => "Mandiri Virtual Account",
+        "VA" => "Maybank Virtual Account",
+        "I1" => "BNI Virtual Account",
+        "B1" => "CIMB Niaga Virtual Account",
+        "BT" => "Permata Bank Virtual Account",
+        "A1" => "ATM Bersama",
+        "AG" => "Bank Artha Graha",
+        "NC" => "Bank Neo Commerce/BNC",
+        "BR" => "BRIVA",
+        "S1" => "Bank Sahabat Sampoerna Ritail",
+        "FT" => "Pegadaian/ALFA/Pos",
+        "A2" => "POS Indonesia",
+        "IR" => "Indomaret",
+        "OV" => "OVO (Support Void)",
+        "SA" => "ShopeePay Apps (Support Void)",
+        "LF" => "LinkAja Apps (Fixed Fee)",
+        "LA" => "LinkAja Apps (Percentage Fee)",
+        "DA" => "DANA",
+        "SP" => "ShopeePay",
+        "LQ" => "LinkAja",
+        "NQ" => "Nobu"
+    ];
+
+    return $data[$code];
+}
