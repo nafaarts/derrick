@@ -97,7 +97,7 @@
                     <div style="margin-top: 20px">
                         <small>PAYMENT STATUS</small>
                         <p class="uppercase">{{ $latest_transaction->status_message }} /
-                            {{ $latest_transaction->payment_code }}
+                            {{ $latest_transaction->payment_code ? getPaymentCode($latest_transaction->payment_code) : '-' }}
                         </p>
                     </div>
                 </div>

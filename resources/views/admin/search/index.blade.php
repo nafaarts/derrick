@@ -215,7 +215,8 @@
                                 @foreach ($other_transaction as $transaction)
                                     <tr class="hover:bg-TERTIARY border-b border-TERTIARY py-5">
                                         <td class="px-4 py-4 whitespace-nowrap">
-                                            {{ $transaction->payment_code ?? '-' }}
+                                            {{ $transaction->payment_code ? getPaymentCode($transaction->payment_code) : '-' }}
+
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             <p>{{ $transaction->reference }}</p>
