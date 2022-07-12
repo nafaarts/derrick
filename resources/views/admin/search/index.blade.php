@@ -172,7 +172,7 @@
                     <tr>
                         <td class="py-2">Payment Type</td>
                         <td class="font-bold py-2 pl-12 uppercase">
-                            {{ $current_transaction->payment_code ?? '-' }}
+                            {{ $current_transaction->payment_code ? $current_transaction->getPaymentCode() '-' }}
                         </td>
                     </tr>
                     <tr>
@@ -215,7 +215,7 @@
                                 @foreach ($other_transaction as $transaction)
                                     <tr class="hover:bg-TERTIARY border-b border-TERTIARY py-5">
                                         <td class="px-4 py-4 whitespace-nowrap">
-                                            {{ $transaction->payment_code ?? '-' }}
+                                            {{ $transaction->payment_code ? $transaction->getPaymentCode() '-' }}
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             <p>{{ $transaction->reference }}</p>
