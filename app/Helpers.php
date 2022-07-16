@@ -65,7 +65,8 @@ function getPaymentCode($code)
         "DA" => "DANA",
         "SP" => "ShopeePay",
         "LQ" => "LinkAja",
-        "NQ" => "Nobu"
+        "NQ" => "Nobu",
+        "MANUAL" => "MANUAL"
     ];
 
     return $data[$code];
