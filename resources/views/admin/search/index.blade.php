@@ -228,6 +228,9 @@
                                             {{ number_format($transaction->amount) }}
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
+                                            {{ $transaction->registration_batch }}
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap">
                                             {{ $transaction->created_at->diffForHumans() }}
                                         </td>
                                     </tr>
