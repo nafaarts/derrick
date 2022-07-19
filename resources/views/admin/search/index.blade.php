@@ -183,6 +183,10 @@
                         <td class="py-2">Pay Amount</td>
                         <td class="font-bold py-2 pl-12">IDR {{ number_format($current_transaction->amount) }}</td>
                     </tr>
+                    <tr>
+                        <td class="py-2">Batch</td>
+                        <td class="font-bold py-2 pl-12">{{ $current_transaction->registration_batch }}</td>
+                    </tr>
                     @can('isAdmin')
                         <tr>
                             <td class="py-2">Response</td>
@@ -226,9 +230,6 @@
                                             {{ $transaction->merchant_order_id }}</td>
                                         <td class="px-4 py-4 whitespace-nowrap">IDR
                                             {{ number_format($transaction->amount) }}
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            {{ $transaction->registration_batch }}
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             {{ $transaction->created_at->diffForHumans() }}
